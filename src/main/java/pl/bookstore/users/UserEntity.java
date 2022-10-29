@@ -36,6 +36,11 @@ public class UserEntity extends BasicEntity {
         this.login = login;
         this.email = email;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
     }
 
 }
