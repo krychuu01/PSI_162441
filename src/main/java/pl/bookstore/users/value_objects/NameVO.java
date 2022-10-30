@@ -2,7 +2,7 @@ package pl.bookstore.users.value_objects;
 
 import lombok.NoArgsConstructor;
 import pl.bookstore.basic.StringValidator;
-import pl.bookstore.basic.ValidationException;
+import pl.bookstore.basic.StringValidationException;
 
 import javax.persistence.Embeddable;
 
@@ -17,7 +17,7 @@ public class NameVO implements StringValidator {
 
     public NameVO(String name) {
         if (isValid(name, MIN_LENGTH, MAX_LENGTH, REGEX)) {
-            throw new ValidationException("Name", MIN_LENGTH, MAX_LENGTH, REGEX);
+            throw new StringValidationException("Name", MIN_LENGTH, MAX_LENGTH, REGEX);
         }
         this.name = name;
     }

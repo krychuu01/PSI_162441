@@ -6,12 +6,11 @@ import pl.bookstore.addresses.AddressEntity;
 import pl.bookstore.basic.BasicEntity;
 import pl.bookstore.users.value_objects.*;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@Table(name = "users")
 public class UserEntity extends BasicEntity {
 
     @Embedded
@@ -28,7 +27,7 @@ public class UserEntity extends BasicEntity {
     private PhoneNumberVO phoneNumber;
     @Embedded
     private DateOfBirthVO dateOfBirth;
-    @OneToOne
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.REMOVE, mappedBy = "users")
     private AddressEntity address;
 
     @Builder

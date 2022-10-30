@@ -1,8 +1,8 @@
 package pl.bookstore.basic;
 
-public class ValidationException extends RuntimeException {
+public class StringValidationException extends RuntimeException {
 
-    public ValidationException(String fieldName, int minLength, int maxLength, String validChars) {
+    public StringValidationException(String fieldName, int minLength, int maxLength, String validChars) {
         super(getMessage(fieldName, minLength, maxLength, validChars));
     }
 
