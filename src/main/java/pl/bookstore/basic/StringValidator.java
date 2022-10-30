@@ -3,7 +3,7 @@ package pl.bookstore.basic;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface BasicValidator {
+public interface StringValidator {
 
     default boolean isValid(String field, int minLength, int maxLength, String regex) {
         return isNotNull(field) &&
