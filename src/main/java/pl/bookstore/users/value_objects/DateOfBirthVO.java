@@ -3,7 +3,7 @@ package pl.bookstore.users.value_objects;
 
 import lombok.NoArgsConstructor;
 import pl.bookstore.basic.DateValidationException;
-import pl.bookstore.basic.Validator;
+import pl.bookstore.basic.DateValidator;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -11,15 +11,14 @@ import java.time.LocalDate;
 
 @Embeddable
 @NoArgsConstructor
-public class DateOfBirthVO extends Validator implements Serializable {
+public class DateOfBirthVO extends DateValidator implements Serializable {
 
-    LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
 
     public DateOfBirthVO(LocalDate dateOfBirth) {
         if (!isValid(dateOfBirth)){
-            throw new DateValidationException("Date cannot be null or be from the future.");
+            throw new DateValidationException("You must be at least 16 years old to create an account.");
         }
-
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -27,10 +26,9 @@ public class DateOfBirthVO extends Validator implements Serializable {
         return LocalDate.now().minusYears(date.getYear()).getYear();
     }
 
-
     @Override
     public boolean isValid(Object value) {
-        return false;
+        return this.isOlderThan(15);
     }
 
     @Override

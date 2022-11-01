@@ -1,21 +1,25 @@
 package pl.bookstore.users.value_objects;
 
+import lombok.NoArgsConstructor;
 import pl.bookstore.basic.StringValidationException;
-import pl.bookstore.basic.Validator;
+import pl.bookstore.basic.StringValidator;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-public class EmailVO extends Validator implements Serializable {
+@Embeddable
+@NoArgsConstructor
+public class EmailVO extends StringValidator implements Serializable {
 
-    public static final String REGEX = "TBA";
-    public static final int MIN_LENGTH = 7;
-    public static final int MAX_LENGTH = 55;
-    public String email;
+    private static final String REGEX = "TBA";
+    private static final int MIN_LENGTH = 7;
+    private static final int MAX_LENGTH = 55;
+    private String email;
 
     public EmailVO(String email) {
         if (!isValid(email)) {
-            throw new StringValidationException("Email", MIN_LENGTH, MAX_LENGTH,
-                    "upper and lower case letters, numbers, one @ sign and dots.");
+            throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
+                    "Email", MIN_LENGTH, MAX_LENGTH, REGEX));
         }
         this.email = email;
     }
@@ -23,7 +27,7 @@ public class EmailVO extends Validator implements Serializable {
     @Override
     public boolean isValid(Object value) {
         setValidatorData();
-        return this.isValidLength() && this.containsValidCharacters();
+        return this.isValidLength() && this.isFromCorrectCharacters();
     }
 
     @Override
