@@ -1,25 +1,41 @@
 package pl.bookstore.users.value_objects;
 
 import lombok.NoArgsConstructor;
-import pl.bookstore.basic.StringValidator;
 import pl.bookstore.basic.StringValidationException;
+import pl.bookstore.basic.Validator;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class LoginVO implements StringValidator {
+public class LoginVO extends Validator implements Serializable {
 
-    public static final String REGEX = "TBA";
-    public static final int MIN_LENGTH = 5;
-    public static final int MAX_LENGTH = 20;
-    public String login;
+    private static final String REGEX = "";
+    private static final int MIN_LENGTH = 5;
+    private static final int MAX_LENGTH = 20;
+    private String login;
 
     public LoginVO(String login) {
-        if (!isValid(login, MIN_LENGTH, MAX_LENGTH, REGEX)) {
-            throw new StringValidationException("Login", MIN_LENGTH, MAX_LENGTH, "upper and lower case letters, numbers and special characters.");
+        if (!this.isValid(login)) {
+            throw new StringValidationException("Login", MIN_LENGTH, MAX_LENGTH,
+                    "upper and lower case letters, numbers and special signs");
         }
         this.login = login;
+    }
+
+    @Override
+    public boolean isValid(Object value){
+        setValidatorData();
+        return this.isValidLength() && this.containsValidCharacters();
+    }
+
+    @Override
+    public void setValidatorData() {
+        this.setField(login);
+        this.setMinLength(MIN_LENGTH);
+        this.setMaxLength(MAX_LENGTH);
+        this.setRegex(REGEX);
     }
 
 }
