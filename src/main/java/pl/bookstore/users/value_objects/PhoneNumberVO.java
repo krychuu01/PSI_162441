@@ -1,8 +1,8 @@
 package pl.bookstore.users.value_objects;
 
 import lombok.NoArgsConstructor;
-import pl.bookstore.basic.StringValidationException;
-import pl.bookstore.basic.StringValidator;
+import pl.bookstore.basic.exceptions.StringValidationException;
+import pl.bookstore.basic.validators.StringValidator;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class PhoneNumberVO extends StringValidator implements Serializable {
     private String phoneNumber;
 
     public PhoneNumberVO(String phoneNumber){
-        if (!isValid(phoneNumber)) {
+        if (!isValid()) {
             throw new StringValidationException(String.format("%s must contains only digits, and be %d digits length.",
                     "Phone number", MAX_LENGTH));
         }
@@ -24,12 +24,13 @@ public class PhoneNumberVO extends StringValidator implements Serializable {
     }
 
     @Override
-    public boolean isValid(Object value) {
-        return this.isValidLength() && this.isFromCorrectCharacters();
+    public boolean isValid() {
+        setValidatorData();
+        return !this.isValidLength() &&
+               !this.isFromCorrectCharacters();
     }
 
-    @Override
-    public void setValidatorData() {
+    private void setValidatorData() {
         this.setField(phoneNumber);
         this.setMaxLength(MAX_LENGTH);
         this.setRegex(REGEX);

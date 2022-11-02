@@ -1,4 +1,4 @@
-package pl.bookstore.basic;
+package pl.bookstore.basic.exceptions;
 
 public class StringValidationException extends RuntimeException {
 

@@ -42,4 +42,5 @@ public class UserEntity extends BasicEntity {
         this.address = address;
     }
 
+
 }

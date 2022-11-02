@@ -1,4 +1,4 @@
-package pl.bookstore.basic;
+package pl.bookstore.basic.exceptions;
 
 public class DateValidationException extends RuntimeException{
 

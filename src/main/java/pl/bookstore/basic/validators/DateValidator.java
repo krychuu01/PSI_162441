@@ -1,12 +1,15 @@
-package pl.bookstore.basic;
+package pl.bookstore.basic.validators;
+
+import pl.bookstore.basic.interfaces.DateValidatable;
 
 import java.time.LocalDate;
 
-public abstract class DateValidator implements Validatable{
+public abstract class DateValidator implements DateValidatable {
 
     private LocalDate date;
 
-    public boolean isInFuture(LocalDate date){
+    @Override
+    public boolean isInFuture(){
         return date.isAfter(LocalDate.now());
     }
 

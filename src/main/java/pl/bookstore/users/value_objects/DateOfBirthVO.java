@@ -2,8 +2,8 @@ package pl.bookstore.users.value_objects;
 
 
 import lombok.NoArgsConstructor;
-import pl.bookstore.basic.DateValidationException;
-import pl.bookstore.basic.DateValidator;
+import pl.bookstore.basic.exceptions.DateValidationException;
+import pl.bookstore.basic.validators.DateValidator;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class DateOfBirthVO extends DateValidator implements Serializable {
     private LocalDate dateOfBirth;
 
     public DateOfBirthVO(LocalDate dateOfBirth) {
-        if (!isValid(dateOfBirth)){
+        if (!isValid()){
             throw new DateValidationException("You must be at least 16 years old to create an account.");
         }
         this.dateOfBirth = dateOfBirth;
@@ -27,12 +27,13 @@ public class DateOfBirthVO extends DateValidator implements Serializable {
     }
 
     @Override
-    public boolean isValid(Object value) {
-        return this.isOlderThan(15);
+    public boolean isValid() {
+        setValidatorData();
+        return !this.isInFuture() &&
+               !this.isOlderThan(15);
     }
 
-    @Override
-    public void setValidatorData() {
+    private void setValidatorData() {
         this.setDate(dateOfBirth);
     }
 

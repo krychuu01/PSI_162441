@@ -1,8 +1,8 @@
 package pl.bookstore.users.value_objects;
 
 import lombok.NoArgsConstructor;
-import pl.bookstore.basic.StringValidator;
-import pl.bookstore.basic.StringValidationException;
+import pl.bookstore.basic.validators.StringValidator;
+import pl.bookstore.basic.exceptions.StringValidationException;
 
 import javax.persistence.Embeddable;
 
@@ -16,7 +16,7 @@ public class NameVO extends StringValidator {
     public String name;
 
     public NameVO(String name) {
-        if (isValid(name)) {
+        if (isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains alphanumeric signs.",
                     "Name", MIN_LENGTH, MAX_LENGTH));
         }
@@ -25,12 +25,13 @@ public class NameVO extends StringValidator {
 
 
     @Override
-    public boolean isValid(Object value) {
-        return this.isValidLength() && this.isFromCorrectCharacters();
+    public boolean isValid() {
+        setValidatorData();
+        return !this.isValidLength() &&
+               !this.isFromCorrectCharacters();
     }
 
-    @Override
-    public void setValidatorData() {
+    private void setValidatorData() {
         this.setField(name);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);

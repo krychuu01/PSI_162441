@@ -1,34 +1,36 @@
-package pl.bookstore.basic;
+package pl.bookstore.basic.validators;
 
 import org.springframework.stereotype.Component;
+import pl.bookstore.basic.interfaces.StringValidatable;
 
 import java.text.Normalizer;
 
 @Component
-public abstract class StringValidator implements Validatable{
+public abstract class StringValidator implements StringValidatable {
 
     private String regex;
     private String field;
     private int minLength;
     private int maxLength;
 
+    @Override
     public boolean isValidLength() {
         return field.length() >= minLength && field.length() <= maxLength;
     }
 
+    @Override
     public boolean isFromCorrectCharacters() {
-        var normalizedString = normalizeString(field);
-        return normalizedString.matches(regex);
+        var normalizedField = normalizeField(field);
+        return normalizedField.matches(regex);
     }
 
     /**
      * Use this method to get rid of special characters from individual languages
      */
 
-    private String normalizeString(String str) {
+    private String normalizeField(String str) {
         return Normalizer.normalize(str, Normalizer.Form.NFD);
     }
-
 
     /**
      * Setters below
