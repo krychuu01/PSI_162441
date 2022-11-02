@@ -26,8 +26,8 @@ public class PhoneNumberVO extends StringValidator implements Serializable {
     @Override
     public boolean isValid() {
         setValidatorData();
-        return !this.isValidLength() &&
-               !this.isFromCorrectCharacters();
+        return this.isValidLength() &&
+               this.isFromCorrectCharacters();
     }
 
     private void setValidatorData() {

@@ -29,8 +29,8 @@ public class DateOfBirthVO extends DateValidator implements Serializable {
     @Override
     public boolean isValid() {
         setValidatorData();
-        return !this.isInFuture() &&
-               !this.isOlderThan(15);
+        return this.isInFuture() &&
+               this.isOlderThan(15);
     }
 
     private void setValidatorData() {

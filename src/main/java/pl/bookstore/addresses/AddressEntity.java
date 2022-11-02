@@ -12,24 +12,15 @@ import javax.persistence.*;
 @Entity
 public class AddressEntity extends BasicEntity {
 
+    @Embedded
     private ZipCodeVO zipCode;
+    @Embedded
     private StreetVO street;
+    @Embedded
     private CityVO city;
+    @Embedded
     private CountryVO country;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private UserEntity user;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JoinTable(name = "address_entity_user_entity",
-            joinColumns = @JoinColumn(name = "address_entity_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_entity_id"))
-    private UserEntity users;
-
-    public UserEntity getUsers() {
-        return users;
-    }
-
-    public void setUsers(UserEntity users) {
-        this.users = users;
-    }
 }
