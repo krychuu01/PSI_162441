@@ -18,7 +18,7 @@ public class ZipCodeVO extends StringValidator implements Serializable {
     public ZipCodeVO(String zipCode){
         setValidatorData(zipCode);
         if(!isValid()) {
-            throw new StringValidationException("ZipCode must contains only digits and dash sign.");
+            throw new StringValidationException("ZipCode must be 6 signs length, contains only digits and dash sign.");
         }
         this.zipCode = zipCode;
     }
