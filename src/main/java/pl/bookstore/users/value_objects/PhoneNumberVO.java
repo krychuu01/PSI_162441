@@ -16,6 +16,7 @@ public class PhoneNumberVO extends StringValidator implements Serializable {
     private String phoneNumber;
 
     public PhoneNumberVO(String phoneNumber){
+        setValidatorData(phoneNumber);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must contains only digits, and be %d digits length.",
                     "Phone number", MAX_LENGTH));
@@ -25,12 +26,11 @@ public class PhoneNumberVO extends StringValidator implements Serializable {
 
     @Override
     public boolean isValid() {
-        setValidatorData();
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    private void setValidatorData() {
+    private void setValidatorData(String phoneNumber) {
         this.setField(phoneNumber);
         this.setMaxLength(MAX_LENGTH);
         this.setRegex(REGEX);

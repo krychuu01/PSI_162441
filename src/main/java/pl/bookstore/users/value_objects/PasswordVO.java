@@ -17,6 +17,7 @@ public class PasswordVO extends StringValidator implements Serializable {
     private String password;
 
     public PasswordVO(String password) {
+        setValidatorData(password);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only alphanumeric and special signs.",
                     "Password", MIN_LENGTH, MAX_LENGTH));
@@ -26,12 +27,11 @@ public class PasswordVO extends StringValidator implements Serializable {
 
     @Override
     public boolean isValid() {
-        setValidatorData();
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    private void setValidatorData() {
+    private void setValidatorData(String password) {
         this.setField(password);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);

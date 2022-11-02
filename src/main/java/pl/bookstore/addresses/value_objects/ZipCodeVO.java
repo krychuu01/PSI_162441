@@ -16,6 +16,7 @@ public class ZipCodeVO extends StringValidator implements Serializable {
     private String zipCode;
 
     public ZipCodeVO(String zipCode){
+        setValidatorData(zipCode);
         if(!isValid()) {
             throw new StringValidationException("ZipCode must contains only digits and dash sign.");
         }
@@ -24,7 +25,6 @@ public class ZipCodeVO extends StringValidator implements Serializable {
 
     @Override
     public boolean isValid() {
-        this.setValidatorData();
         return this.isFromCorrectCharacters() &&
                this.isValidLength();
     }
@@ -34,7 +34,7 @@ public class ZipCodeVO extends StringValidator implements Serializable {
         return zipCode.length() == MAX_LENGTH;
     }
 
-    private void setValidatorData(){
+    private void setValidatorData(String zipCode){
         this.setField(zipCode);
         this.setRegex(REGEX);
     }

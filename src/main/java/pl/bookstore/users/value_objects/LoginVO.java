@@ -17,6 +17,7 @@ public class LoginVO extends StringValidator implements Serializable {
     private String login;
 
     public LoginVO(String login) {
+        setValidatorData(login);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
                     "Login", MIN_LENGTH, MAX_LENGTH, REGEX));
@@ -26,12 +27,11 @@ public class LoginVO extends StringValidator implements Serializable {
 
     @Override
     public boolean isValid(){
-        setValidatorData();
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    private void setValidatorData() {
+    private void setValidatorData(String login) {
         this.setField(login);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);

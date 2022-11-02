@@ -17,6 +17,7 @@ public class EmailVO extends StringValidator implements Serializable {
     private String email;
 
     public EmailVO(String email) {
+        setValidatorData(email);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
                     "Email", MIN_LENGTH, MAX_LENGTH, REGEX));
@@ -26,12 +27,11 @@ public class EmailVO extends StringValidator implements Serializable {
 
     @Override
     public boolean isValid() {
-        setValidatorData();
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    protected void setValidatorData() {
+    protected void setValidatorData(String email) {
         this.setField(email);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);

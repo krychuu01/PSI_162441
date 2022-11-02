@@ -16,6 +16,7 @@ public class DateOfBirthVO extends DateValidator implements Serializable {
     private LocalDate dateOfBirth;
 
     public DateOfBirthVO(LocalDate dateOfBirth) {
+        setValidatorData(dateOfBirth);
         if (!isValid()){
             throw new DateValidationException("You must be at least 16 years old to create an account.");
         }
@@ -28,13 +29,12 @@ public class DateOfBirthVO extends DateValidator implements Serializable {
 
     @Override
     public boolean isValid() {
-        setValidatorData();
         return this.isInFuture() &&
                this.isOlderThan(15);
     }
 
-    private void setValidatorData() {
-        this.setDate(dateOfBirth);
+    private void setValidatorData(LocalDate date) {
+        this.setDate(date);
     }
 
 }

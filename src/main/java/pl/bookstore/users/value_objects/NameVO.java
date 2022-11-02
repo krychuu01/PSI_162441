@@ -16,6 +16,7 @@ public class NameVO extends StringValidator {
     public String name;
 
     public NameVO(String name) {
+        setValidatorData(name);
         if (isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains alphanumeric signs.",
                     "Name", MIN_LENGTH, MAX_LENGTH));
@@ -26,12 +27,11 @@ public class NameVO extends StringValidator {
 
     @Override
     public boolean isValid() {
-        setValidatorData();
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    private void setValidatorData() {
+    private void setValidatorData(String name) {
         this.setField(name);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);
