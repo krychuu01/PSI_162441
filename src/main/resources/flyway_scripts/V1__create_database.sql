@@ -3,33 +3,30 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
 
-CREATE SEQUENCE IF NOT EXISTS id_seq
-AS BIGINT
-INCREMENT BY 1
-START WITH 10000;
-
 
 CREATE TABLE IF NOT EXISTS `mydb`.`books` (
-  `id` BIGINT NOT NULL DEFAULT nextval('id_seq'),
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `isbn` VARCHAR(13) NOT NULL,
   `number_of_pages` INT NOT NULL,
   `year_of_publication` INT NOT NULL,
   `publisher` VARCHAR(45) NOT NULL,
   `binding` ENUM("softcover", "hardcover", "e_book") NOT NULL,
   PRIMARY KEY (`id`))
+  AUTO_INCREMENT = 10000
   ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`addresses` (
-  `id` BIGINT NOT NULL DEFAULT nextval('id_seq'),
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `zip_code` VARCHAR(45) NULL,
   `street` VARCHAR(45) NULL,
   `city` VARCHAR(45) NULL,
   `country` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
+  AUTO_INCREMENT = 10000
   ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`users` (
-  `id` BIGINT NOT NULL DEFAULT nextval('id_seq'),
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(30) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
@@ -46,10 +43,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
     REFERENCES `mydb`.`addresses` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+    AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
-  `id` BIGINT NOT NULL DEFAULT nextval('id_seq'),
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `status` ENUM("in_progress", "paid", "shipped") NOT NULL,
   `order_date` DATE NOT NULL,
   `total_price` DOUBLE NOT NULL,
@@ -61,11 +59,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
     REFERENCES `mydb`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+    AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
 CREATE TABLE IF NOT EXISTS `mydb`.`authors` (
-  `id` BIGINT NOT NULL DEFAULT nextval('id_seq'),
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -87,11 +86,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`books_has_authors` (
     REFERENCES `mydb`.`authors` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+    AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
 CREATE TABLE IF NOT EXISTS `mydb`.`orders_info` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `orders_id` BIGINT NOT NULL,
   `books_id` BIGINT NOT NULL,
   `books_amount` INT NOT NULL,
@@ -109,4 +109,5 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders_info` (
     REFERENCES `mydb`.`books` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+    AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;

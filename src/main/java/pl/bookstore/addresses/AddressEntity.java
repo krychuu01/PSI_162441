@@ -6,15 +6,17 @@ import pl.bookstore.addresses.value_objects.CityVO;
 import pl.bookstore.addresses.value_objects.CountryVO;
 import pl.bookstore.addresses.value_objects.StreetVO;
 import pl.bookstore.addresses.value_objects.ZipCodeVO;
-import pl.bookstore.basic.BasicEntity;
 import pl.bookstore.users.UserEntity;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class AddressEntity extends BasicEntity {
+public class AddressEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Embedded
     private ZipCodeVO zipCode;
     @Embedded

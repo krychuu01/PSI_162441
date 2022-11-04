@@ -3,7 +3,6 @@ package pl.bookstore.users;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import pl.bookstore.addresses.AddressEntity;
-import pl.bookstore.basic.BasicEntity;
 import pl.bookstore.users.value_objects.*;
 
 import javax.persistence.*;
@@ -11,8 +10,11 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Table(name = "users")
-public class UserEntity extends BasicEntity {
+public class UserEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Embedded
     private LoginVO login;
     @Embedded
