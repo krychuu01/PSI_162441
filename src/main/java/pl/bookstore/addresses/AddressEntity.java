@@ -12,6 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@Table(name = "addresses")
 public class AddressEntity {
 
     @Id
@@ -26,6 +27,7 @@ public class AddressEntity {
     @Embedded
     private CountryVO country;
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "users_id")
     private UserEntity user;
 
     @Builder

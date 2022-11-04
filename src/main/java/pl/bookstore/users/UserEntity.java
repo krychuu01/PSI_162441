@@ -22,14 +22,21 @@ public class UserEntity {
     @Embedded
     private PasswordVO password;
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride( name = "firstName", column= @Column(name = "first_name"))
+    })
     private NameVO firstName;
+    @AttributeOverrides({
+            @AttributeOverride( name = "lastName", column= @Column(name = "last_name"))
+    })
     @Embedded
     private NameVO lastName;
     @Embedded
     private PhoneNumberVO phoneNumber;
     @Embedded
     private DateOfBirthVO dateOfBirth;
-    @OneToOne(orphanRemoval = true, cascade = CascadeType.REMOVE, mappedBy = "users")
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "addresses_id")
     private AddressEntity address;
 
     @Builder
