@@ -61,6 +61,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
+			<version>8.5.13</version>
 		</dependency>
 
 		<dependency>
@@ -103,6 +104,19 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<configuration>
+					<sqlMigrationSeparator>__</sqlMigrationSeparator>
+					<locations>
+						<location>filesystem:src/main/resources/flyway_scripts</location>
+					</locations>
+					<url>jdbc:mysql://localhost:3306/bookstore</url>
+					<user>root</user>
+					<password>root</password>
 				</configuration>
 			</plugin>
 		</plugins>
