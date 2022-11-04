@@ -3,4 +3,5 @@ Repozytorium na potrzeby przedmiotu 'Programowanie serwisów internetowych'
 
 ## Online Bookstore
 
-![schemat_bazy_danych_projektu](https://user-images.githubusercontent.com/72739801/198877976-f6d97490-d1c3-48c1-9dc1-0587ba2cdd12.png)
+![project_db_schema](https://user-images.githubusercontent.com/72739801/200042343-353e38ee-2aff-4000-afeb-1685c1053fbb.png)
+
