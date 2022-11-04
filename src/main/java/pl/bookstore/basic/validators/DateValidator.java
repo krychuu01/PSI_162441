@@ -22,6 +22,14 @@ public abstract class DateValidator implements DateValidatable {
         return LocalDate.now().getYear();
     }
 
+    public int getCurrentMonth() {
+        return LocalDate.now().getMonthValue();
+    }
+
+    public int getCurrentDay() {
+        return LocalDate.now().getDayOfMonth();
+    }
+
     /**
      * Setters below
      */
