@@ -14,7 +14,12 @@ public abstract class DateValidator implements DateValidatable {
     }
 
     public boolean isOlderThan(int years){
-        return date.minusYears(years).getYear() > 15;
+        var currentYear = getCurrentYear();
+        return currentYear - date.getYear() > years;
+    }
+
+    public int getCurrentYear() {
+        return LocalDate.now().getYear();
     }
 
     /**

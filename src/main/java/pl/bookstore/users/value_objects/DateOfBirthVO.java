@@ -23,8 +23,8 @@ public class DateOfBirthVO extends DateValidator implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getAge(LocalDate date) {
-        return LocalDate.now().minusYears(date.getYear()).getYear();
+    public int getAge() {
+        return this.getCurrentYear() - dateOfBirth.getYear();
     }
 
     @Override

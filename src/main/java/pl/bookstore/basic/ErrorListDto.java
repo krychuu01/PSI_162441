@@ -1,7 +1,10 @@
 package pl.bookstore.basic;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+@RequiredArgsConstructor
 public class ErrorListDto {
 
     public List<String> errors;
