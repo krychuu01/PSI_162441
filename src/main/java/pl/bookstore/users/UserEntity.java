@@ -22,15 +22,11 @@ public class UserEntity {
     @Embedded
     private PasswordVO password;
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride( name = "firstName", column= @Column(name = "first_name"))
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "firstName", column = @Column(name = "first_name")),
+            @AttributeOverride(name = "lastName", column = @Column(name = "last_name"))
     })
-    private NameVO firstName;
-    @AttributeOverrides({
-            @AttributeOverride( name = "lastName", column= @Column(name = "last_name"))
-    })
-    @Embedded
-    private NameVO lastName;
+    private NameVO name;
     @Embedded
     private PhoneNumberVO phoneNumber;
     @Embedded
@@ -40,16 +36,14 @@ public class UserEntity {
     private AddressEntity address;
 
     @Builder
-    public UserEntity(LoginVO login, EmailVO email, PasswordVO password, NameVO firstName, NameVO lastName, PhoneNumberVO phoneNumber, DateOfBirthVO dateOfBirth, AddressEntity address){
+    public UserEntity(LoginVO login, EmailVO email, PasswordVO password, NameVO name, PhoneNumberVO phoneNumber, DateOfBirthVO dateOfBirth, AddressEntity address){
         this.login = login;
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
     }
-
 
 }

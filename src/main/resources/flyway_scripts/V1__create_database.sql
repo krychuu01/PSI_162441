@@ -1,10 +1,10 @@
 
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `bookstore` DEFAULT CHARACTER SET utf8 ;
+USE `bookstore` ;
 
 
 
-CREATE TABLE IF NOT EXISTS `mydb`.`books` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`books` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `isbn` VARCHAR(13) NOT NULL,
   `number_of_pages` INT NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`books` (
   AUTO_INCREMENT = 10000
   ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`addresses` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`addresses` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `zip_code` VARCHAR(45) NULL,
   `street` VARCHAR(45) NULL,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`addresses` (
   AUTO_INCREMENT = 10000
   ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`users` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(30) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -40,13 +40,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   INDEX `fk_users_addresses1_idx` (`addresses_id` ASC) VISIBLE,
   CONSTRAINT `fk_users_addresses1`
     FOREIGN KEY (`addresses_id`)
-    REFERENCES `mydb`.`addresses` (`id`)
+    REFERENCES `bookstore`.`addresses` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
     AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`orders` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `status` ENUM("in_progress", "paid", "shipped") NOT NULL,
   `order_date` DATE NOT NULL,
@@ -56,21 +56,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
   INDEX `fk_orders_users1_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_orders_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `mydb`.`users` (`id`)
+    REFERENCES `bookstore`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
     AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
-CREATE TABLE IF NOT EXISTS `mydb`.`authors` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`authors` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
   ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`books_has_authors` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`books_has_authors` (
   `books_id` BIGINT NOT NULL,
   `authors_id` BIGINT NOT NULL,
   PRIMARY KEY (`books_id`, `authors_id`),
@@ -78,19 +78,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`books_has_authors` (
   INDEX `fk_books_has_autors_books1_idx` (`books_id` ASC) VISIBLE,
   CONSTRAINT `fk_books_has_autors_books1`
     FOREIGN KEY (`books_id`)
-    REFERENCES `mydb`.`books` (`id`)
+    REFERENCES `bookstore`.`books` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_books_has_autors_autors1`
     FOREIGN KEY (`authors_id`)
-    REFERENCES `mydb`.`authors` (`id`)
+    REFERENCES `bookstore`.`authors` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
     AUTO_INCREMENT = 10000
     ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
-CREATE TABLE IF NOT EXISTS `mydb`.`orders_info` (
+CREATE TABLE IF NOT EXISTS `bookstore`.`orders_info` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `orders_id` BIGINT NOT NULL,
   `books_id` BIGINT NOT NULL,
@@ -101,12 +101,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders_info` (
   INDEX `fk_orders_has_books_orders1_idx` (`orders_id` ASC) VISIBLE,
   CONSTRAINT `fk_orders_has_books_orders1`
     FOREIGN KEY (`orders_id`)
-    REFERENCES `mydb`.`orders` (`id`)
+    REFERENCES `bookstore`.`orders` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_has_books_books1`
     FOREIGN KEY (`books_id`)
-    REFERENCES `mydb`.`books` (`id`)
+    REFERENCES `bookstore`.`books` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
     AUTO_INCREMENT = 10000
