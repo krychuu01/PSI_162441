@@ -6,6 +6,7 @@ import pl.bookstore.basic.validators.StringValidator;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 @NoArgsConstructor
@@ -14,7 +15,7 @@ public class LoginVO extends StringValidator implements Serializable {
     private static final String REGEX = "TBA";
     private static final int MIN_LENGTH = 5;
     private static final int MAX_LENGTH = 20;
-    private String login;
+    public String login;
 
     public LoginVO(String login) {
         setValidatorData(login);

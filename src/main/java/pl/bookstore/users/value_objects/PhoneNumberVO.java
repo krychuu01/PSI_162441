@@ -13,7 +13,7 @@ public class PhoneNumberVO extends StringValidator implements Serializable {
 
     private static final int MAX_LENGTH = 9;
     private static final String REGEX = "[\\d]++";
-    private String phoneNumber;
+    public String phoneNumber;
 
     public PhoneNumberVO(String phoneNumber){
         setValidatorData(phoneNumber);

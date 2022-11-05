@@ -6,10 +6,11 @@ import pl.bookstore.basic.validators.StringValidator;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class NameVO extends StringValidator {
+public class NameVO extends StringValidator implements Serializable {
 
     public static final String REGEX = "[\\p{Alpha}\\p{Space}-']++";
     public static final int MIN_LENGTH = 3;

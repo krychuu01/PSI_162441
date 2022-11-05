@@ -1,6 +1,7 @@
 package pl.bookstore.users.value_objects;
 
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.validators.DateValidator;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class DateOfBirthVO extends DateValidator implements Serializable {
 
-    private LocalDate dateOfBirth;
+    public LocalDate dateOfBirth;
 
     public DateOfBirthVO(LocalDate dateOfBirth) {
         setValidatorData(dateOfBirth);

@@ -14,7 +14,7 @@ public class PasswordVO extends StringValidator implements Serializable {
     private static final String REGEX = "TBA";
     private static final int MIN_LENGTH = 7;
     private static final int MAX_LENGTH = 55;
-    private String password;
+    public String password;
 
     public PasswordVO(String password) {
         setValidatorData(password);

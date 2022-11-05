@@ -14,7 +14,7 @@ public class EmailVO extends StringValidator implements Serializable {
     private static final String REGEX = "TBA";
     private static final int MIN_LENGTH = 7;
     private static final int MAX_LENGTH = 55;
-    private String email;
+    public String email;
 
     public EmailVO(String email) {
         setValidatorData(email);

@@ -1,23 +1,26 @@
 package pl.bookstore.users;
 
-import org.springframework.core.SpringVersion;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+
+@RequiredArgsConstructor
 @RequestMapping("/api/users")
+@RestController
 public class UserContoller {
 
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
     @GetMapping("/{id}")
-    public UserEntity getUser(@PathVariable Long id){
-        throw new IllegalArgumentException("Not implemented yet!");
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO getUser(@PathVariable Long id){
+        var user = userRepository.findUserById(id);
+        return userMapper.fromUserToUserDTO(user);
     }
 
-    @GetMapping("/spring")
-    public String getSpring(){
-        return SpringVersion.getVersion();
-    }
 
 }
+
+

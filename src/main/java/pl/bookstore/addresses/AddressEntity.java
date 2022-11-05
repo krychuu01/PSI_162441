@@ -6,14 +6,15 @@ import pl.bookstore.addresses.value_objects.CityVO;
 import pl.bookstore.addresses.value_objects.CountryVO;
 import pl.bookstore.addresses.value_objects.StreetVO;
 import pl.bookstore.addresses.value_objects.ZipCodeVO;
-import pl.bookstore.users.UserEntity;
+import pl.bookstore.users.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @NoArgsConstructor
 @Table(name = "addresses")
-public class AddressEntity {
+public class AddressEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,7 @@ public class AddressEntity {
     private CountryVO country;
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "users_id")
-    private UserEntity user;
+    private User user;
 
     @Builder
     public AddressEntity(ZipCodeVO zipCode, StreetVO street, CityVO city, CountryVO country){
