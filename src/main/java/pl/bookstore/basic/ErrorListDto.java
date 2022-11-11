@@ -21,4 +21,10 @@ public class ErrorListDto {
         this.errors.add(error);
     }
 
+    public void buildMessage(String message) {
+        if (isEmpty()) {
+            addError("Successfully " + message);
+        }
+    }
+
 }

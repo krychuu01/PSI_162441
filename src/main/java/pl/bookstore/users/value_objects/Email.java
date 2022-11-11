@@ -6,34 +6,33 @@ import pl.bookstore.basic.validators.StringValidator;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 @NoArgsConstructor
-public class LoginVO extends StringValidator implements Serializable {
+public class Email extends StringValidator implements Serializable {
 
     private static final String REGEX = "TBA";
-    private static final int MIN_LENGTH = 5;
-    private static final int MAX_LENGTH = 20;
-    public String login;
+    private static final int MIN_LENGTH = 7;
+    private static final int MAX_LENGTH = 55;
+    public String email;
 
-    public LoginVO(String login) {
-        setValidatorData(login);
+    public Email(String email) {
+        setValidatorData(email);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
-                    "Login", MIN_LENGTH, MAX_LENGTH, REGEX));
+                    "Email", MIN_LENGTH, MAX_LENGTH, REGEX));
         }
-        this.login = login;
+        this.email = email;
     }
 
     @Override
-    public boolean isValid(){
+    public boolean isValid() {
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    private void setValidatorData(String login) {
-        this.setField(login);
+    protected void setValidatorData(String email) {
+        this.setField(email);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);
         this.setRegex(REGEX);

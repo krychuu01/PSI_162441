@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class NameVO extends StringValidator implements Serializable {
+public class Name extends StringValidator implements Serializable {
 
     public static final String REGEX = "[\\p{Alpha}\\p{Space}-']++";
     public static final int MIN_LENGTH = 3;
@@ -20,7 +20,7 @@ public class NameVO extends StringValidator implements Serializable {
     @Column(name = "last_name")
     public String lastName;
 
-    public NameVO(String firstName, String lastName) {
+    public Name(String firstName, String lastName) {
         setValidatorData(firstName);
         if (isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains alphanumeric signs.",

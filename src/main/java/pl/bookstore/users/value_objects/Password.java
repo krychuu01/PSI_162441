@@ -9,14 +9,14 @@ import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class PasswordVO extends StringValidator implements Serializable {
+public class Password extends StringValidator implements Serializable {
 
     private static final String REGEX = "TBA";
     private static final int MIN_LENGTH = 7;
     private static final int MAX_LENGTH = 55;
     public String password;
 
-    public PasswordVO(String password) {
+    public Password(String password) {
         setValidatorData(password);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only alphanumeric and special signs.",

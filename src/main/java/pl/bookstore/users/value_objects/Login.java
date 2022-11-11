@@ -9,30 +9,30 @@ import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class EmailVO extends StringValidator implements Serializable {
+public class Login extends StringValidator implements Serializable {
 
     private static final String REGEX = "TBA";
-    private static final int MIN_LENGTH = 7;
-    private static final int MAX_LENGTH = 55;
-    public String email;
+    private static final int MIN_LENGTH = 5;
+    private static final int MAX_LENGTH = 20;
+    public String login;
 
-    public EmailVO(String email) {
-        setValidatorData(email);
+    public Login(String login) {
+        setValidatorData(login);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
-                    "Email", MIN_LENGTH, MAX_LENGTH, REGEX));
+                    "Login", MIN_LENGTH, MAX_LENGTH, REGEX));
         }
-        this.email = email;
+        this.login = login;
     }
 
     @Override
-    public boolean isValid() {
+    public boolean isValid(){
         return this.isValidLength() &&
                this.isFromCorrectCharacters();
     }
 
-    protected void setValidatorData(String email) {
-        this.setField(email);
+    private void setValidatorData(String login) {
+        this.setField(login);
         this.setMinLength(MIN_LENGTH);
         this.setMaxLength(MAX_LENGTH);
         this.setRegex(REGEX);

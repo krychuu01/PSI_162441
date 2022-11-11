@@ -3,6 +3,8 @@ package pl.bookstore.users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.bookstore.basic.ErrorListDto;
+import pl.bookstore.users.dtos.UserDto;
 
 
 @RequiredArgsConstructor
@@ -10,14 +12,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserContoller {
 
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private final UserFacade facade;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDTO getUser(@PathVariable Long id){
-        var user = userRepository.findUserById(id);
-        return userMapper.fromUserToUserDTO(user);
+    public UserDto getUser(@PathVariable Long id){
+        return facade.getUserById(id);
+    }
+
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ErrorListDto createUser(@RequestBody UserDto userDto){
+        return facade.createUser(userDto);
     }
 
 

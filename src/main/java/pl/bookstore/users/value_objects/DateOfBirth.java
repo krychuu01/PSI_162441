@@ -12,11 +12,11 @@ import java.time.LocalDate;
 
 @Embeddable
 @NoArgsConstructor
-public class DateOfBirthVO extends DateValidator implements Serializable {
+public class DateOfBirth extends DateValidator implements Serializable {
 
     public LocalDate dateOfBirth;
 
-    public DateOfBirthVO(LocalDate dateOfBirth) {
+    public DateOfBirth(LocalDate dateOfBirth) {
         setValidatorData(dateOfBirth);
         if (!isValid()){
             throw new DateValidationException("You must be at least 16 years old to create an account.");

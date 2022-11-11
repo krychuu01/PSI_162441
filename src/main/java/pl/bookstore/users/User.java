@@ -21,27 +21,27 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Embedded
-    private LoginVO login;
+    private Login login;
     @Embedded
-    private EmailVO email;
+    private Email email;
     @Embedded
-    private PasswordVO password;
+    private Password password;
     @Embedded
     @AttributeOverrides(value = {
             @AttributeOverride(name = "firstName", column = @Column(name = "first_name")),
             @AttributeOverride(name = "lastName", column = @Column(name = "last_name"))
     })
-    private NameVO name;
+    private Name name;
     @Embedded
-    private PhoneNumberVO phoneNumber;
+    private PhoneNumber phoneNumber;
     @Embedded
-    private DateOfBirthVO dateOfBirth;
+    private DateOfBirth dateOfBirth;
     @OneToOne(orphanRemoval = true, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "addresses_id")
     private AddressEntity address;
 
     @Builder
-    public User(LoginVO login, EmailVO email, PasswordVO password, NameVO name, PhoneNumberVO phoneNumber, DateOfBirthVO dateOfBirth, AddressEntity address){
+    public User(Login login, Email email, Password password, Name name, PhoneNumber phoneNumber, DateOfBirth dateOfBirth, AddressEntity address){
         this.login = login;
         this.email = email;
         this.password = password;

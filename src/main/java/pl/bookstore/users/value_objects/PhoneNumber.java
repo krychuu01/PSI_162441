@@ -9,13 +9,13 @@ import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class PhoneNumberVO extends StringValidator implements Serializable {
+public class PhoneNumber extends StringValidator implements Serializable {
 
     private static final int MAX_LENGTH = 9;
     private static final String REGEX = "[\\d]++";
     public String phoneNumber;
 
-    public PhoneNumberVO(String phoneNumber){
+    public PhoneNumber(String phoneNumber){
         setValidatorData(phoneNumber);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must contains only digits, and be %d digits length.",
