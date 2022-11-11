@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import pl.bookstore.users.dtos.UserDto;
 import pl.bookstore.users.value_objects.*;
 
+import java.util.List;
+
 @Component
 public class UserMapper {
 
@@ -28,6 +30,12 @@ public class UserMapper {
                 .phoneNumber(new PhoneNumber(userDTO.phoneNumber()))
                 .dateOfBirth(new DateOfBirth(userDTO.dateOfBirth()))
                 .build();
+    }
+
+    public List<UserDto> fromUserListToUserDtoList(List<User> users) {
+        return users.stream()
+                .map(this::fromUserToUserDto)
+                .toList();
     }
 
 }

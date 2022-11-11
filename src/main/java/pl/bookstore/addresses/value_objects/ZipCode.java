@@ -9,13 +9,13 @@ import java.io.Serializable;
 
 @Embeddable
 @NoArgsConstructor
-public class ZipCodeVO extends StringValidator implements Serializable {
+public class ZipCode extends StringValidator implements Serializable {
 
     private static final String REGEX = "[\\d-]++";
     private static final int MAX_LENGTH = 6;
     private String zipCode;
 
-    public ZipCodeVO(String zipCode){
+    public ZipCode(String zipCode){
         setValidatorData(zipCode);
         if(!isValid()) {
             throw new StringValidationException("ZipCode must be 6 signs length, contains only digits and dash sign.");
@@ -26,11 +26,11 @@ public class ZipCodeVO extends StringValidator implements Serializable {
     @Override
     public boolean isValid() {
         return this.isFromCorrectCharacters() &&
-               this.isValidLength();
+               this.isLengthBetweenTwoValues();
     }
 
     @Override
-    public boolean isValidLength(){
+    public boolean isLengthBetweenTwoValues(){
         return zipCode.length() == MAX_LENGTH;
     }
 

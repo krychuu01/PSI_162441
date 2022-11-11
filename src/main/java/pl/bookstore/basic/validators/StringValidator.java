@@ -12,10 +12,16 @@ public abstract class StringValidator implements StringValidatable {
     private String field;
     private int minLength;
     private int maxLength;
+    private int exactLength;
 
     @Override
-    public boolean isValidLength() {
+    public boolean isLengthBetweenTwoValues() {
         return field.length() >= minLength && field.length() <= maxLength;
+    }
+
+    @Override
+    public boolean isExactLength() {
+        return field.length() == exactLength;
     }
 
     @Override
@@ -53,6 +59,11 @@ public abstract class StringValidator implements StringValidatable {
 
     protected StringValidator setMaxLength(int maxLength) {
         this.maxLength = maxLength;
+        return this;
+    }
+
+    protected StringValidator setExactLength(int exactLength) {
+        this.exactLength = exactLength;
         return this;
     }
 

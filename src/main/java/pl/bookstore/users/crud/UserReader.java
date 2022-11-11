@@ -7,6 +7,8 @@ import pl.bookstore.users.UserMapper;
 import pl.bookstore.users.UserRepository;
 import pl.bookstore.users.dtos.UserDto;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 public class UserReader {
@@ -17,6 +19,11 @@ public class UserReader {
     public UserDto getUserById(Long id) {
         var user = findUser(id);
         return mapper.fromUserToUserDto(user);
+    }
+
+    public List<UserDto> getAllUsers() {
+        var users = repository.findAll();
+        return mapper.fromUserListToUserDtoList(users);
     }
 
     public User findUser(Long id) {

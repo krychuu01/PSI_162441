@@ -9,6 +9,8 @@ import pl.bookstore.users.crud.UserReader;
 import pl.bookstore.users.crud.UserUpdater;
 import pl.bookstore.users.dtos.UserDto;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 public class UserFacade {
@@ -22,8 +24,11 @@ public class UserFacade {
         return reader.getUserById(id);
     }
 
+    public List<UserDto> getAllUsers() {
+        return reader.getAllUsers();
+    }
+
     public ErrorListDto createUser(UserDto userDto){
         return creator.create(userDto);
     }
-
 }

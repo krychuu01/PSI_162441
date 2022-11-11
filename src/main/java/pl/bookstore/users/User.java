@@ -3,7 +3,7 @@ package pl.bookstore.users;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import pl.bookstore.addresses.AddressEntity;
+import pl.bookstore.addresses.Address;
 import pl.bookstore.users.value_objects.*;
 
 import javax.persistence.*;
@@ -38,10 +38,10 @@ public class User implements Serializable {
     private DateOfBirth dateOfBirth;
     @OneToOne(orphanRemoval = true, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "addresses_id")
-    private AddressEntity address;
+    private Address address;
 
     @Builder
-    public User(Login login, Email email, Password password, Name name, PhoneNumber phoneNumber, DateOfBirth dateOfBirth, AddressEntity address){
+    public User(Login login, Email email, Password password, Name name, PhoneNumber phoneNumber, DateOfBirth dateOfBirth, Address address){
         this.login = login;
         this.email = email;
         this.password = password;
@@ -84,8 +84,12 @@ public class User implements Serializable {
     }
 
     //
-    public AddressEntity getAddress() {
+    public Address getAddress() {
         throw new IllegalStateException("To be implemented!");
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
 }

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.bookstore.basic.ErrorListDto;
 import pl.bookstore.users.dtos.UserDto;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
@@ -18,6 +20,12 @@ public class UserContoller {
     @ResponseStatus(HttpStatus.OK)
     public UserDto getUser(@PathVariable Long id){
         return facade.getUserById(id);
+    }
+
+    @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDto> getUsers() {
+        return facade.getAllUsers();
     }
 
     @PostMapping("")

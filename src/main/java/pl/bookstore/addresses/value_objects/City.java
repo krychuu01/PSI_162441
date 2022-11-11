@@ -8,14 +8,14 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor
-public class CityVO extends StringValidator {
+public class City extends StringValidator {
 
     private static final String REGEX = "TBA";
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 30;
     private String city;
 
-    public CityVO(String city){
+    public City(String city){
         setValidatorData(city);
         if (!isValid()) {
             throw new StringValidationException(String.format("City must be between %d-%d and contains only alphanumerical signs",
@@ -27,7 +27,7 @@ public class CityVO extends StringValidator {
 
     @Override
     public boolean isValid() {
-        return this.isValidLength() &&
+        return this.isLengthBetweenTwoValues() &&
                this.isFromCorrectCharacters();
     }
 

@@ -38,7 +38,7 @@ public class Name extends StringValidator implements Serializable {
 
     @Override
     public boolean isValid() {
-        return this.isValidLength() &&
+        return this.isLengthBetweenTwoValues() &&
                this.isFromCorrectCharacters();
     }
 

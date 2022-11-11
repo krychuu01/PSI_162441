@@ -2,6 +2,8 @@ package pl.bookstore.users.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.bookstore.addresses.Address;
+import pl.bookstore.addresses.AddressRepository;
 import pl.bookstore.basic.ErrorListDto;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;
@@ -17,6 +19,7 @@ public class UserCreator {
 
     private final UserRepository repository;
     private final UserMapper mapper;
+    private final AddressRepository addressRepository;
 
     public ErrorListDto create(UserDto userDto) {
         var errorList = new ErrorListDto(new ArrayList<>());
@@ -28,11 +31,19 @@ public class UserCreator {
     private void saveUser(ErrorListDto errorList, UserDto userDto) {
         try {
             var user = mapper.fromUserDtoToUser(userDto);
+            var address = createAddress();
+            user.setAddress(address);
             repository.save(user);
         }
         catch (StringValidationException | DateValidationException exception) {
             errorList.addError(exception.getMessage());
         }
+    }
+
+    private Address createAddress() {
+        var address = new Address();
+        addressRepository.save(address);
+        return address;
     }
 
 }
