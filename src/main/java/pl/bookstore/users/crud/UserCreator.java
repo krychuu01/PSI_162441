@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import pl.bookstore.basic.ErrorListDto;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;
-import pl.bookstore.users.User;
 import pl.bookstore.users.UserMapper;
 import pl.bookstore.users.UserRepository;
 import pl.bookstore.users.dtos.UserDto;
@@ -21,14 +20,14 @@ public class UserCreator {
 
     public ErrorListDto create(UserDto userDto) {
         var errorList = new ErrorListDto(new ArrayList<>());
-        var user = mapper.fromUserDtoToUser(userDto);
-        saveUser(errorList, user);
-        errorList.buildMessage(String.format("Added user with %s email", user.getEmail()));
+        saveUser(errorList, userDto);
+        errorList.buildMessage(String.format("Added user with %s email", userDto.email()));
         return errorList;
     }
 
-    private void saveUser(ErrorListDto errorList, User user) {
+    private void saveUser(ErrorListDto errorList, UserDto userDto) {
         try {
+            var user = mapper.fromUserDtoToUser(userDto);
             repository.save(user);
         }
         catch (StringValidationException | DateValidationException exception) {

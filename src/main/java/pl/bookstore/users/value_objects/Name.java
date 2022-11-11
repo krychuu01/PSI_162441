@@ -22,12 +22,12 @@ public class Name extends StringValidator implements Serializable {
 
     public Name(String firstName, String lastName) {
         setValidatorData(firstName);
-        if (isValid()) {
+        if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains alphanumeric signs.",
                     "First name", MIN_LENGTH, MAX_LENGTH));
         }
         setValidatorData(lastName);
-        if (isValid()) {
+        if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains alphanumeric signs.",
                     "Last name", MIN_LENGTH, MAX_LENGTH));
         }

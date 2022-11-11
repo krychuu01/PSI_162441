@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Login extends StringValidator implements Serializable {
 
-    private static final String REGEX = "TBA";
+    private static final String REGEX = "[\\p{Alnum}\\p{Punct}]++";
     private static final int MIN_LENGTH = 5;
     private static final int MAX_LENGTH = 20;
     public String login;

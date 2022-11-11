@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Email extends StringValidator implements Serializable {
 
-    private static final String REGEX = "TBA";
+    private static final String REGEX = "[\\p{Alpha}\\p{Digit}]++@[\\p{Alpha}\\p{Digit}]++.[\\p{Alpha}\\p{Digit}]++";
     private static final int MIN_LENGTH = 7;
     private static final int MAX_LENGTH = 55;
     public String email;

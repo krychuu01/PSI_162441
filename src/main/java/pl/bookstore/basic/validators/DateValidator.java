@@ -8,11 +8,6 @@ public abstract class DateValidator implements DateValidatable {
 
     private LocalDate date;
 
-    @Override
-    public boolean isInFuture(){
-        return date.isAfter(LocalDate.now());
-    }
-
     public boolean isOlderThan(int years){
         var currentYear = getCurrentYear();
         return currentYear - date.getYear() > years;
