@@ -7,9 +7,9 @@ import pl.bookstore.addresses.AddressRepository;
 import pl.bookstore.basic.ErrorListDto;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;
-import pl.bookstore.users.UserMapper;
+import pl.bookstore.basic.interfaces.EntityDto;
+import pl.bookstore.users.User;
 import pl.bookstore.users.UserRepository;
-import pl.bookstore.users.dtos.UserDto;
 
 import java.util.ArrayList;
 
@@ -17,30 +17,31 @@ import java.util.ArrayList;
 @Component
 public class UserCreator {
 
-    private final UserRepository repository;
-    private final UserMapper mapper;
+    private final UserRepository userRepository;
     private final AddressRepository addressRepository;
 
-    public ErrorListDto create(UserDto userDto) {
+    public ErrorListDto create(EntityDto<User> userDto) {
         var errorList = new ErrorListDto(new ArrayList<>());
         saveUser(errorList, userDto);
-        errorList.buildMessage(String.format("Added user with %s email", userDto.email()));
         return errorList;
     }
 
-    private void saveUser(ErrorListDto errorList, UserDto userDto) {
+    private void saveUser(ErrorListDto errorList, EntityDto<User> userDto) {
         try {
-            var user = mapper.fromUserDtoToUser(userDto);
-            var address = createAddress();
+            var user = userDto.toEntity();
+            var address = createNewAddress();
             user.setAddress(address);
-            repository.save(user);
+
+
+            userRepository.save(user);
+            errorList.buildMessage(String.format("Added user with %s email", user.getEmail()));
         }
         catch (StringValidationException | DateValidationException exception) {
             errorList.addError(exception.getMessage());
         }
     }
 
-    private Address createAddress() {
+    private Address createNewAddress() {
         var address = new Address();
         addressRepository.save(address);
         return address;

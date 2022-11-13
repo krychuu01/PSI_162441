@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import pl.bookstore.addresses.Address;
+import pl.bookstore.basic.interfaces.EntityMapper;
+import pl.bookstore.users.dtos.UserDto;
 import pl.bookstore.users.value_objects.*;
 
 import javax.persistence.*;
@@ -15,7 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @Table(name = "users")
-public class User implements Serializable {
+public class User implements Serializable, EntityMapper<UserDto> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +51,19 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
+    }
+
+    @Override
+    public UserDto toDto() {
+        return UserDto.builder()
+                .login(this.getLogin())
+                .email(this.getEmail())
+                .lastName(this.getLastName())
+                .firstName(this.getFirstName())
+                .dateOfBirth(this.getDateOfBirth())
+                .password(this.getPassword())
+                .phoneNumber(this.getPhoneNumber())
+                .build();
     }
 
     /**

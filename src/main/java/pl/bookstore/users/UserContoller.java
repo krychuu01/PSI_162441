@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.bookstore.basic.ErrorListDto;
+import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.dtos.UserDto;
 
 import java.util.List;
@@ -18,20 +19,20 @@ public class UserContoller {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDto getUser(@PathVariable Long id){
-        return facade.getUserById(id);
+    public EntityDto<User> getUser(@PathVariable Long id){
+        return facade.readOne(id);
     }
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserDto> getUsers() {
-        return facade.getAllUsers();
+    public List<EntityDto<User>> getUsers() {
+        return facade.readAll();
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public ErrorListDto createUser(@RequestBody UserDto userDto){
-        return facade.createUser(userDto);
+        return facade.create(userDto);
     }
 
 
