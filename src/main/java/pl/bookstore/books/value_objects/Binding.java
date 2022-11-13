@@ -1,6 +1,8 @@
 package pl.bookstore.books.value_objects;
 
 
+import java.util.Objects;
+
 public enum Binding {
 
     SOFTCOVER("softcover"),
@@ -14,6 +16,18 @@ public enum Binding {
 
     public String getCoverType() {
         return this.coverType;
+    }
+
+    public boolean isSoftCover() {
+        return Objects.equals(this.coverType, SOFTCOVER.getCoverType());
+    }
+
+    public boolean isHardCover() {
+        return Objects.equals(this.coverType, HARDCOVER.getCoverType());
+    }
+
+    public boolean isEBook() {
+        return Objects.equals(this.coverType, E_BOOK.getCoverType());
     }
 
 }
