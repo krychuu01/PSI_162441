@@ -27,8 +27,8 @@ public class BookCreator {
     private void saveBook(ErrorListDto errorList, EntityDto<Book> bookDto) {
         try {
             var book = bookDto.toEntity();
-            if (existByTitle(book)) {
-                throw new AlreadyExistException("Book with this title already exsists!");
+            if (existByIsbn(book)) {
+                throw new AlreadyExistException("Book with this ISBN already exsists!");
             }
             bookRepository.save(book);
             errorList.buildMessage(String.format("Added book with '%s' title", book.getTitle()));
@@ -38,8 +38,8 @@ public class BookCreator {
         }
     }
 
-    private boolean existByTitle(Book book) {
-        return bookRepository.existsByTitle(book.getTitle());
+    private boolean existByIsbn(Book book) {
+        return bookRepository.existsByIsbn(book.getIsbn());
     }
 
 }

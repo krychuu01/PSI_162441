@@ -28,6 +28,7 @@ public class Book implements Serializable, EntityMapper<BookDto> {
     private YearOfPublication yearOfPublication;
     @Embedded
     private Publisher publisher;
+    @Enumerated(EnumType.STRING)
     private Binding binding;
 
     @Builder
