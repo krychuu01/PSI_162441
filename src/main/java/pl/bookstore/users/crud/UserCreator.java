@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.bookstore.addresses.Address;
 import pl.bookstore.addresses.AddressRepository;
 import pl.bookstore.basic.ErrorListDto;
+import pl.bookstore.basic.exceptions.AlreadyExistException;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;
 import pl.bookstore.basic.interfaces.EntityDto;
@@ -29,14 +30,15 @@ public class UserCreator {
     private void saveUser(ErrorListDto errorList, EntityDto<User> userDto) {
         try {
             var user = userDto.toEntity();
+            if (existByEmailOrLogin(user)) {
+                throw new AlreadyExistException("user");
+            }
             var address = createNewAddress();
             user.setAddress(address);
-
-
             userRepository.save(user);
             errorList.buildMessage(String.format("Added user with %s email", user.getEmail()));
         }
-        catch (StringValidationException | DateValidationException exception) {
+        catch (StringValidationException | DateValidationException | AlreadyExistException exception) {
             errorList.addError(exception.getMessage());
         }
     }
@@ -45,6 +47,10 @@ public class UserCreator {
         var address = new Address();
         addressRepository.save(address);
         return address;
+    }
+
+    private boolean existByEmailOrLogin(User user) {
+        return userRepository.existsByEmail(user.getEmail()) || userRepository.existsByLogin(user.getLogin());
     }
 
 }
