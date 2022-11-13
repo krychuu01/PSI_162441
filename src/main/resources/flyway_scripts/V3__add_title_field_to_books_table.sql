@@ -1,0 +1,3 @@
+
+ALTER TABLE books
+ADD COLUMN title VARCHAR(50) AFTER isbn;

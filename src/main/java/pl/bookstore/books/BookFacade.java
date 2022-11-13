@@ -24,7 +24,7 @@ public class BookFacade implements CrudInterface<Book> {
 
     @Override
     public ErrorListDto create(EntityDto<Book> entityDto) {
-        return null;
+        return creator.create(entityDto);
     }
 
     @Override
