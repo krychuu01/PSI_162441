@@ -21,17 +21,19 @@ public class Book implements Serializable, EntityMapper<BookDto> {
     @Embedded
     private Isbn isbn;
     @Embedded
+    private Title title;
+    @Embedded
     private NumberOfPages numberOfPages;
     @Embedded
     private YearOfPublication yearOfPublication;
     @Embedded
     private Publisher publisher;
-    @Embedded
     private Binding binding;
 
     @Builder
-    public Book (Isbn isbn, NumberOfPages numberOfPages, YearOfPublication yearOfPublication, Publisher publisher, Binding binding){
+    public Book (Isbn isbn, Title title, NumberOfPages numberOfPages, YearOfPublication yearOfPublication, Publisher publisher, Binding binding){
         this.isbn = isbn;
+        this.title = title;
         this.numberOfPages = numberOfPages;
         this.yearOfPublication = yearOfPublication;
         this.publisher = publisher;
@@ -42,15 +44,20 @@ public class Book implements Serializable, EntityMapper<BookDto> {
     public BookDto toDto() {
         return BookDto.builder()
                 .isbn(this.getIsbn())
+                .title(this.getTitle())
                 .numberOfPages(this.getNumberOfPages())
                 .yearOfPublication(this.getYearOfPublication())
                 .publisher(this.getPublisher())
-                .binding(this.getBinding())
+                .coverType(this.binding.getCoverType())
                 .build();
     }
 
     public String getIsbn() {
         return isbn.isbn;
+    }
+
+    public String getTitle(){
+        return title.title;
     }
 
     public String getNumberOfPages() {

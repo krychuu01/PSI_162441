@@ -20,27 +20,26 @@ public class BookCreator {
 
     public ErrorListDto create(EntityDto<Book> bookDto) {
         var errorList = new ErrorListDto(new ArrayList<>());
-//        saveBook(errorList, bookDto);
-//        errorList.buildMessage(String.format("Book %s successfully added", bookDto.title()));
+        saveBook(errorList, bookDto);
         return errorList;
     }
 
-//    private void saveBook(ErrorListDto errorList, EntityDto<Book> bookDto) {
-//        try {
-//            var book = bookDto.toEntity();
-//            if (existByTitle(book)) {
-//                throw new AlreadyExistException("user");
-//            }
-//            bookRepository.save(book);
-//            errorList.buildMessage(String.format("Added book with %s title", book.getTitle()));
-//        }
-//        catch (StringValidationException | DateValidationException | AlreadyExistException exception) {
-//            errorList.addError(exception.getMessage());
-//        }
-//    }
-//
-//    private boolean existByTitle(Book book) {
-//        return bookRepository.existsByTitle(book.getTitle());
-//    }
+    private void saveBook(ErrorListDto errorList, EntityDto<Book> bookDto) {
+        try {
+            var book = bookDto.toEntity();
+            if (existByTitle(book)) {
+                throw new AlreadyExistException("Book with this title already exsists!");
+            }
+            bookRepository.save(book);
+            errorList.buildMessage(String.format("Added book with '%s' title", book.getTitle()));
+        }
+        catch (StringValidationException | DateValidationException | AlreadyExistException exception) {
+            errorList.addError(exception.getMessage());
+        }
+    }
+
+    private boolean existByTitle(Book book) {
+        return bookRepository.existsByTitle(book.getTitle());
+    }
 
 }

@@ -19,7 +19,7 @@ public class Isbn extends StringValidator implements Validatable {
 
     public Isbn(String isbn) {
         setValidatorData(isbn);
-        if (!isValid()) {
+        if (!isValid() || !isLengthEqualsValidLength(isbn)) {
             throw new StringValidationException(
                     String.format("ISBN must be %d or %d length, and consist only digits",
                             FIRST_VALID_LENGTH, SECOND_VALID_LENGTH)
@@ -30,12 +30,10 @@ public class Isbn extends StringValidator implements Validatable {
 
     @Override
     public boolean isValid() {
-        return this.isLengthBetweenTwoValues() &&
-               this.isFromCorrectCharacters();
+        return this.isFromCorrectCharacters();
     }
 
-    @Override
-    public boolean isLengthBetweenTwoValues() {
+    public boolean isLengthEqualsValidLength(String isbn) {
         return isbn.length() == FIRST_VALID_LENGTH || isbn.length() == SECOND_VALID_LENGTH;
     }
 

@@ -31,7 +31,7 @@ public class UserCreator {
         try {
             var user = userDto.toEntity();
             if (existByEmailOrLogin(user)) {
-                throw new AlreadyExistException("user");
+                throw new AlreadyExistException("User with this email or login already exists!");
             }
             var address = createNewAddress();
             user.setAddress(address);
