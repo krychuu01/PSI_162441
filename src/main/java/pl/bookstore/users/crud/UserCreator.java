@@ -4,15 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.bookstore.addresses.Address;
 import pl.bookstore.addresses.AddressRepository;
-import pl.bookstore.basic.ErrorListDto;
+import pl.bookstore.basic.MessageListDto;
 import pl.bookstore.basic.exceptions.AlreadyExistException;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.User;
 import pl.bookstore.users.UserRepository;
-
-import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Component
@@ -21,13 +19,13 @@ public class UserCreator {
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
 
-    public ErrorListDto create(EntityDto<User> userDto) {
-        var errorList = new ErrorListDto(new ArrayList<>());
+    public MessageListDto create(EntityDto<User> userDto) {
+        var errorList = new MessageListDto();
         saveUser(errorList, userDto);
         return errorList;
     }
 
-    private void saveUser(ErrorListDto errorList, EntityDto<User> userDto) {
+    private void saveUser(MessageListDto errorList, EntityDto<User> userDto) {
         try {
             var user = userDto.toEntity();
             if (existByEmailOrLogin(user)) {

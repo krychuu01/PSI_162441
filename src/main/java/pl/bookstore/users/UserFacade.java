@@ -2,14 +2,13 @@ package pl.bookstore.users;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.bookstore.basic.ErrorListDto;
+import pl.bookstore.basic.MessageListDto;
 import pl.bookstore.basic.interfaces.CrudInterface;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.crud.UserCreator;
 import pl.bookstore.users.crud.UserDeleter;
 import pl.bookstore.users.crud.UserReader;
 import pl.bookstore.users.crud.UserUpdater;
-import pl.bookstore.users.dtos.UserDto;
 
 import java.util.List;
 
@@ -23,13 +22,13 @@ public class UserFacade implements CrudInterface<User> {
     private final UserDeleter deleter;
 
     @Override
-    public ErrorListDto create(EntityDto<User> entityDto) {
+    public MessageListDto create(EntityDto<User> entityDto) {
         return creator.create(entityDto);
     }
 
     @Override
-    public EntityDto<User> readOne(Long entityId) {
-        return reader.getUserById(entityId);
+    public EntityDto<User> readOne(Long id) {
+        return reader.getUserById(id);
     }
 
     @Override
@@ -38,12 +37,12 @@ public class UserFacade implements CrudInterface<User> {
     }
 
     @Override
-    public ErrorListDto updateField(Long entityId, EntityDto<User> entityDto, String fieldName) {
+    public MessageListDto updateField(Long entityId, EntityDto<User> entityDto, String fieldName) {
         return null;
     }
 
     @Override
-    public ErrorListDto delete(Long entityId) {
+    public MessageListDto delete(Long entityId) {
         return null;
     }
 

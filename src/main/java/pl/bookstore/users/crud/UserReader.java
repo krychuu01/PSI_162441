@@ -28,9 +28,9 @@ public class UserReader {
                 .collect(Collectors.toList());
     }
 
-    public User findUser(Long id) {
+    private User findUser(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new IllegalStateException(""));
+                .orElseThrow(() -> new IllegalStateException("User not found"));
     }
 
 }

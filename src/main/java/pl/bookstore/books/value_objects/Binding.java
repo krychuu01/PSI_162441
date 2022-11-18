@@ -1,9 +1,8 @@
 package pl.bookstore.books.value_objects;
 
 
-import pl.bookstore.basic.exceptions.StringValidationException;
-
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public enum Binding {
 
@@ -21,19 +20,11 @@ public enum Binding {
     }
 
     public static Binding getBindingType(String coverType) {
-        if (Objects.equals(coverType, E_BOOK.getCoverType())){
-            return E_BOOK;
-        }
-        if  (Objects.equals(coverType, SOFTCOVER.getCoverType())){
-            return SOFTCOVER;
-        }
-        if (Objects.equals(coverType, HARDCOVER.getCoverType())) {
-            return HARDCOVER;
-        }
-        throw new StringValidationException(
-                String.format("coverType must be one of %s, %s or %s",
-                        E_BOOK.getCoverType(), SOFTCOVER.getCoverType(), HARDCOVER.getCoverType())
-        );
+        return Stream.of(values())
+                .filter(binding -> binding.coverType.equals(coverType))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(String.format("coverType must be one of '%s', '%s' or '%s'",
+                        E_BOOK.getCoverType(), SOFTCOVER.getCoverType(), HARDCOVER.getCoverType())));
     }
 
     public boolean isSoftCover() {

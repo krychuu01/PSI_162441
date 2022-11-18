@@ -1,19 +1,16 @@
 package pl.bookstore.basic;
 
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
-public class ErrorListDto {
+@NoArgsConstructor
+public class MessageListDto {
 
-    public List<String> errors;
+    public List<String> errors = new ArrayList<>();
 
-    public ErrorListDto(List<String> errors){
-        this.errors = errors;
-    }
-
-    public boolean isEmpty(){
+    public boolean isErrorListEmpty(){
         return this.errors.isEmpty();
     }
 
@@ -22,7 +19,7 @@ public class ErrorListDto {
     }
 
     public void buildMessage(String message) {
-        if (isEmpty()) {
+        if (isErrorListEmpty()) {
             addError("Successfully " + message);
         }
     }

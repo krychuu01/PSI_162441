@@ -2,7 +2,7 @@ package pl.bookstore.books;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.bookstore.basic.ErrorListDto;
+import pl.bookstore.basic.MessageListDto;
 import pl.bookstore.basic.interfaces.CrudInterface;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.crud.BookCreator;
@@ -23,27 +23,27 @@ public class BookFacade implements CrudInterface<Book> {
 
 
     @Override
-    public ErrorListDto create(EntityDto<Book> entityDto) {
+    public MessageListDto create(EntityDto<Book> entityDto) {
         return creator.create(entityDto);
     }
 
     @Override
-    public EntityDto<Book> readOne(Long entityId) {
-        return null;
+    public EntityDto<Book> readOne(Long id) {
+        return reader.getBookById(id);
     }
 
     @Override
     public List<EntityDto<Book>> readAll() {
+        return reader.getAllBooks();
+    }
+
+    @Override
+    public MessageListDto updateField(Long entityId, EntityDto<Book> entityDto, String fieldName) {
         return null;
     }
 
     @Override
-    public ErrorListDto updateField(Long entityId, EntityDto<Book> entityDto, String fieldName) {
-        return null;
-    }
-
-    @Override
-    public ErrorListDto delete(Long entityId) {
+    public MessageListDto delete(Long entityId) {
         return null;
     }
 }
