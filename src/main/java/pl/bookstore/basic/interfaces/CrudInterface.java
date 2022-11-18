@@ -1,6 +1,7 @@
 package pl.bookstore.basic.interfaces;
 
-import pl.bookstore.basic.MessageListDto;
+import pl.bookstore.basic.dto.MessageListDto;
+import pl.bookstore.basic.dto.UpdateDto;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface CrudInterface<T>{
 
     List<EntityDto<T>> readAll();
 
-    MessageListDto updateField(Long entityId, EntityDto<T> entityDto, String fieldName);
+    MessageListDto updateField(Long entityId, UpdateDto dto);
 
     MessageListDto delete(Long entityId);
 

@@ -1,4 +1,4 @@
-package pl.bookstore.basic;
+package pl.bookstore.basic.dto;
 
 import lombok.NoArgsConstructor;
 

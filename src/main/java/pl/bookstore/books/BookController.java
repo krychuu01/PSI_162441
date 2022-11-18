@@ -3,7 +3,8 @@ package pl.bookstore.books;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.bookstore.basic.MessageListDto;
+import pl.bookstore.basic.dto.MessageListDto;
+import pl.bookstore.basic.dto.UpdateDto;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.dtos.BookDto;
 
@@ -32,6 +33,18 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public EntityDto<Book> getBook(@PathVariable Long id) {
         return facade.readOne(id);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public MessageListDto editBookField(@PathVariable Long id, @RequestBody UpdateDto dto) {
+        return facade.updateField(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageListDto deleteBook(@PathVariable Long id) {
+        return facade.delete(id);
     }
 
 }

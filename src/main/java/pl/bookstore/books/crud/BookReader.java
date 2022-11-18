@@ -22,12 +22,12 @@ public class BookReader {
                 .collect(Collectors.toList());
     }
 
-    public EntityDto<Book> getBookById(Long id) {
+    public EntityDto<Book> getBookDtoById(Long id) {
         var book = findBook(id);
         return book.toDto();
     }
 
-    private Book findBook(Long id) {
+    protected Book findBook(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Book not found"));
     }

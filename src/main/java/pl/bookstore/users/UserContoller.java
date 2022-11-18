@@ -3,7 +3,7 @@ package pl.bookstore.users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.bookstore.basic.MessageListDto;
+import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.dtos.UserDto;
 

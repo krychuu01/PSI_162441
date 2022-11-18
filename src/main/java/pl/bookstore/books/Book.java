@@ -9,6 +9,7 @@ import pl.bookstore.books.value_objects.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 @Entity
 @Table(name = "books")
@@ -75,6 +76,18 @@ public class Book implements Serializable, EntityMapper<BookDto> {
 
     public Binding getBinding() {
         return binding;
+    }
+
+    public void setFieldValue(String fieldName, String value){
+        switch (fieldName) {
+            case "isbn" -> this.isbn = new Isbn(value);
+            case "title" -> this.title = new Title(value);
+            case "numberOfPages" -> this.numberOfPages = new NumberOfPages(value);
+            case "yearOfPublication" -> this.yearOfPublication = new YearOfPublication(value);
+            case "publisher" -> this.publisher = new Publisher(value);
+            case "binding" -> this.binding = Binding.getBindingType(value);
+            default -> throw new IllegalStateException("Field not found or can't be changed.");
+        }
     }
 
 }

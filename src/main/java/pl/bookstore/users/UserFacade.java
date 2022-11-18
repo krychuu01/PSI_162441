@@ -2,7 +2,8 @@ package pl.bookstore.users;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.bookstore.basic.MessageListDto;
+import pl.bookstore.basic.dto.MessageListDto;
+import pl.bookstore.basic.dto.UpdateDto;
 import pl.bookstore.basic.interfaces.CrudInterface;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.crud.UserCreator;
@@ -37,7 +38,7 @@ public class UserFacade implements CrudInterface<User> {
     }
 
     @Override
-    public MessageListDto updateField(Long entityId, EntityDto<User> entityDto, String fieldName) {
+    public MessageListDto updateField(Long entityId, UpdateDto dto) {
         return null;
     }
 

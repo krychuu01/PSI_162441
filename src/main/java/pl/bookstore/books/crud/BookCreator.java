@@ -2,7 +2,7 @@ package pl.bookstore.books.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.bookstore.basic.MessageListDto;
+import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.exceptions.AlreadyExistException;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;

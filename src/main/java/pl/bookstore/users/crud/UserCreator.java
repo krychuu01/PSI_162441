@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.bookstore.addresses.Address;
 import pl.bookstore.addresses.AddressRepository;
-import pl.bookstore.basic.MessageListDto;
+import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.exceptions.AlreadyExistException;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.exceptions.StringValidationException;
