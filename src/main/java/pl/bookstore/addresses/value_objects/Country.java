@@ -11,16 +11,17 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 public class Country extends StringValidator {
 
-    private static final String REGEX = "[a-zA-Z\\{Space}]++";
+    private static final String REGEX = "[\\p{Alpha}\\p{Space}]++";
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 50;
-    private String country;
+    public String country;
 
     public Country(String country){
         setValidatorData(country);
         if (!isValid()) {
             throw new StringValidationException("Country must contains only letters and spaces.");
         }
+        this.country = country;
     }
 
     @Override

@@ -10,10 +10,10 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 public class City extends StringValidator {
 
-    private static final String REGEX = "TBA";
+    private static final String REGEX = "[\\p{Alpha}\\p{Space}]++";
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 30;
-    private String city;
+    public String city;
 
     public City(String city){
         setValidatorData(city);

@@ -10,10 +10,10 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 public class Street extends StringValidator {
 
-    private static final String REGEX = "";
+    private static final String REGEX = "[\\p{Alnum}\\p{Space}\\p{Punct}]++";
     private static final int MAX_LENGTH = 50;
     private static final int MIN_LENGTH = 3;
-    private String street;
+    public String street;
 
     public Street(String street){
         setValidatorData(street);

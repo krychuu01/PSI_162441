@@ -13,7 +13,7 @@ public class ZipCode extends StringValidator implements Serializable {
 
     private static final String REGEX = "[\\d-]++";
     private static final int MAX_LENGTH = 6;
-    private String zipCode;
+    public String zipCode;
 
     public ZipCode(String zipCode){
         setValidatorData(zipCode);
@@ -26,17 +26,13 @@ public class ZipCode extends StringValidator implements Serializable {
     @Override
     public boolean isValid() {
         return this.isFromCorrectCharacters() &&
-               this.isLengthBetweenTwoValues();
-    }
-
-    @Override
-    public boolean isLengthBetweenTwoValues(){
-        return zipCode.length() == MAX_LENGTH;
+               this.isExactLength();
     }
 
     private void setValidatorData(String zipCode){
         this.setField(zipCode);
         this.setRegex(REGEX);
+        this.setExactLength(MAX_LENGTH);
     }
 
 }

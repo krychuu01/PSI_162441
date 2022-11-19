@@ -9,7 +9,6 @@ import pl.bookstore.books.value_objects.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.reflect.Field;
 
 @Entity
 @Table(name = "books")
