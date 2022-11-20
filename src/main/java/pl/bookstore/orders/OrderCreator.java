@@ -36,7 +36,7 @@ public class OrderCreator {
     }
 
     private void addOrderInfoForEachBook(Order order, List<Book> booksList, Map<Long, Integer> bookIdAndAmountMap) {
-        var orderInfoSet = new ArrayList<OrderInfo>();
+        var orderInfoList = new ArrayList<OrderInfo>();
 
         for (Book book: booksList) {
             var orderedAmount = bookIdAndAmountMap.get(book.getId());
@@ -48,10 +48,10 @@ public class OrderCreator {
                     .price(priceForOrderedAmount)
                     .build();
 
-            orderInfoSet.add(orderInfo);
+            orderInfoList.add(orderInfo);
         }
 
-        orderInfoRepository.saveAllAndFlush(orderInfoSet);
+        orderInfoRepository.saveAllAndFlush(orderInfoList);
     }
 
     private void setOrderTotalPrice(Order order, List<Book> booksList, Map<Long, Integer> bookIdAndAmountMap) {
