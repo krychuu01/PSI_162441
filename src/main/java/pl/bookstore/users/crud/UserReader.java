@@ -16,7 +16,7 @@ public class UserReader {
 
     private final UserRepository repository;
 
-    public UserDto getUserById(Long id) {
+    public UserDto getUserAsDtoById(Long id) {
         var user = findUser(id);
         return user.toDto();
     }
@@ -28,7 +28,7 @@ public class UserReader {
                 .collect(Collectors.toList());
     }
 
-    private User findUser(Long id) {
+    public User findUser(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("User not found"));
     }

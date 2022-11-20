@@ -1,7 +1,6 @@
 package pl.bookstore.users.value_objects;
 
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.bookstore.basic.exceptions.DateValidationException;
 import pl.bookstore.basic.validators.DateValidator;

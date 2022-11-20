@@ -28,16 +28,20 @@ public class Book implements Serializable, EntityMapper<BookDto> {
     private YearOfPublication yearOfPublication;
     @Embedded
     private Publisher publisher;
+
+    @Embedded
+    private Price price;
     @Enumerated(EnumType.STRING)
     private Binding binding;
 
     @Builder
-    public Book (Isbn isbn, Title title, NumberOfPages numberOfPages, YearOfPublication yearOfPublication, Publisher publisher, Binding binding){
+    public Book (Isbn isbn, Title title, NumberOfPages numberOfPages, YearOfPublication yearOfPublication, Publisher publisher, Price price, Binding binding){
         this.isbn = isbn;
         this.title = title;
         this.numberOfPages = numberOfPages;
         this.yearOfPublication = yearOfPublication;
         this.publisher = publisher;
+        this.price = price;
         this.binding = binding;
     }
 
@@ -49,8 +53,13 @@ public class Book implements Serializable, EntityMapper<BookDto> {
                 .numberOfPages(this.getNumberOfPages())
                 .yearOfPublication(this.getYearOfPublication())
                 .publisher(this.getPublisher())
+                .price(this.getPrice())
                 .coverType(this.binding.getCoverType())
                 .build();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getIsbn() {
@@ -73,6 +82,9 @@ public class Book implements Serializable, EntityMapper<BookDto> {
         return publisher.publisher;
     }
 
+    public Double getPrice() {
+        return price.price;
+    }
     public Binding getBinding() {
         return binding;
     }

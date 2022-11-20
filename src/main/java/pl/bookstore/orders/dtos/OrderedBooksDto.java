@@ -1,2 +1,9 @@
-package pl.bookstore.orders.dtos;public record OrderedBooksDto() {
+package pl.bookstore.orders.dtos;
+
+import java.util.TreeMap;
+
+public record OrderedBooksDto(TreeMap<Long, Integer> bookIdAndAmountMap, Integer discount) {
+
+
+
 }

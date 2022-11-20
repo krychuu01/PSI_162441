@@ -29,7 +29,7 @@ public class UserFacade implements CrudInterface<User> {
 
     @Override
     public EntityDto<User> readOne(Long id) {
-        return reader.getUserById(id);
+        return reader.getUserAsDtoById(id);
     }
 
     @Override

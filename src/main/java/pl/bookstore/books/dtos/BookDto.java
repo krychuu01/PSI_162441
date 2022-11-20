@@ -6,7 +6,7 @@ import pl.bookstore.books.Book;
 import pl.bookstore.books.value_objects.*;
 
 public record BookDto(String isbn, String title, String numberOfPages, String yearOfPublication,
-                      String publisher, String coverType) implements EntityDto<Book> {
+                      String publisher, Double price, String coverType) implements EntityDto<Book> {
 
     @Builder
     public BookDto {};
@@ -19,6 +19,7 @@ public record BookDto(String isbn, String title, String numberOfPages, String ye
                 .numberOfPages(new NumberOfPages(this.numberOfPages()))
                 .yearOfPublication(new YearOfPublication(this.yearOfPublication()))
                 .publisher(new Publisher(this.publisher()))
+                .price(new Price(this.price()))
                 .binding(Binding.getBindingType(this.coverType))
                 .build();
     }
