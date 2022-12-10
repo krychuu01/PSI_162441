@@ -116,7 +116,6 @@
 					</locations>
 					<url>jdbc:mysql://localhost:3306/bookstore</url>
 					<user>root</user>
-					<password>root</password>
 				</configuration>
 			</plugin>
 		</plugins>
