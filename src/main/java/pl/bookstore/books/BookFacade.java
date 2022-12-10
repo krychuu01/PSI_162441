@@ -47,4 +47,5 @@ public class BookFacade implements CrudInterface<Book> {
     public MessageListDto delete(Long entityId) {
         return deleter.deleteById(entityId);
     }
+
 }

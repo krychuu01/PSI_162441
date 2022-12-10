@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/books")
 @RestController
-public class BookController {
+public class BookCrudController {
 
     private final BookFacade facade;
 

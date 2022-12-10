@@ -15,7 +15,7 @@ public record BookDto(String isbn, String title, String numberOfPages, String ye
     public Book toEntity() {
         return Book.builder()
                 .isbn(new Isbn(this.isbn()))
-                .title(new Title(this.title()))
+                .title(new Title(this.title().trim()))
                 .numberOfPages(new NumberOfPages(this.numberOfPages()))
                 .yearOfPublication(new YearOfPublication(this.yearOfPublication()))
                 .publisher(new Publisher(this.publisher()))

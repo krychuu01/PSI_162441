@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Name extends StringValidator implements Serializable {
 
-    public static final String REGEX = "[\\p{Alpha}\\p{Space}-']++";
+    public static final String REGEX = "[\\p{Alpha}\\p{Space}-.']++";
     public static final int MIN_LENGTH = 3;
     public static final int MAX_LENGTH = 30;
     @Column(name = "first_name")

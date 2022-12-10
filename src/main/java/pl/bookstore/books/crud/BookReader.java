@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
+import pl.bookstore.books_has_authors.BookHasAuthorsRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
