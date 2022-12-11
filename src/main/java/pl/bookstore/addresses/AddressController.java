@@ -18,8 +18,8 @@ public class AddressController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<EntityDto<Address>> getAddresses() {
-        return facade.readAll();
+    public List<EntityDto<Address>> getAddresses(@RequestParam int page) {
+        return facade.readAll(page);
     }
 
     @GetMapping("/{id}")

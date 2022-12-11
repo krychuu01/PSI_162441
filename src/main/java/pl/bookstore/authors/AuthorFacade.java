@@ -33,8 +33,8 @@ public class AuthorFacade implements CrudInterface<Author> {
     }
 
     @Override
-    public List<EntityDto<Author>> readAll() {
-        return null;
+    public List<EntityDto<Author>> readAll(Integer page) {
+        return reader.getAllAuthors(page);
     }
 
     @Override

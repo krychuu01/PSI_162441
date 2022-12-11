@@ -25,8 +25,8 @@ public class UserContoller {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<EntityDto<User>> getUsers() {
-        return facade.readAll();
+    public List<EntityDto<User>> getUsers(@RequestParam int page) {
+        return facade.readAll(page);
     }
 
     @GetMapping("/{id}")

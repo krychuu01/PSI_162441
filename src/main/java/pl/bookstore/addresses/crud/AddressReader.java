@@ -16,7 +16,7 @@ public class AddressReader {
 
     private final AddressRepository repository;
 
-    public List<EntityDto<Address>> getAllAddresses() {
+    public List<EntityDto<Address>> getAllAddresses(int page) {
         var addresses = repository.findAll();
         return addresses.stream()
                 .map(Address::toDto)

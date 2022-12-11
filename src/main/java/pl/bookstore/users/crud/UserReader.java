@@ -21,7 +21,7 @@ public class UserReader {
         return user.toDto();
     }
 
-    public List<EntityDto<User>> getAllUsers() {
+    public List<EntityDto<User>> getAllUsers(int page) {
         var users = repository.findAll();
         return users.stream()
                 .map(User::toDto)

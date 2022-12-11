@@ -33,8 +33,8 @@ public class UserFacade implements CrudInterface<User> {
     }
 
     @Override
-    public List<EntityDto<User>> readAll() {
-        return reader.getAllUsers();
+    public List<EntityDto<User>> readAll(Integer page) {
+        return reader.getAllUsers(page);
     }
 
     @Override

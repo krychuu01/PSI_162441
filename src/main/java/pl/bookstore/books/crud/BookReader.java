@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
-import pl.bookstore.books_has_authors.BookHasAuthorsRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,7 @@ public class BookReader {
 
     private final BookRepository repository;
 
-    public List<EntityDto<Book>> getAllBooks() {
+    public List<EntityDto<Book>> getAllBooks(int page) {
         var books = repository.findAll();
         return books.stream()
                 .map(Book::toDto)

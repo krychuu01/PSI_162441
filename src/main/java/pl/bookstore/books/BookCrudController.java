@@ -25,8 +25,8 @@ public class BookCrudController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<EntityDto<Book>> getBooks() {
-        return facade.readAll();
+    public List<EntityDto<Book>> getBooks(@RequestParam int page) {
+        return facade.readAll(page);
     }
 
     @GetMapping("/{id}")
