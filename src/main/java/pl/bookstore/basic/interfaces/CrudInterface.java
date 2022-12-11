@@ -11,7 +11,7 @@ public interface CrudInterface<T>{
 
     EntityDto<T> readOne(Long id);
 
-    List<EntityDto<T>> readAll(Integer page);
+    List<? extends EntityDto<T>> readAll(Integer page);
 
     MessageListDto updateField(Long entityId, UpdateDto dto);
 

@@ -3,7 +3,6 @@ package pl.bookstore.books;
 
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import pl.bookstore.authors.Author;
 import pl.bookstore.basic.interfaces.EntityMapper;
 import pl.bookstore.books.dtos.BookDto;
 import pl.bookstore.books.value_objects.*;

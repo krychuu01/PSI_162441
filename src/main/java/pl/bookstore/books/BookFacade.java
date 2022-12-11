@@ -34,7 +34,7 @@ public class BookFacade implements CrudInterface<Book> {
     }
 
     @Override
-    public List<EntityDto<Book>> readAll(Integer page) {
+    public List<? extends EntityDto<Book>> readAll(Integer page) {
         return reader.getAllBooks(page);
     }
 

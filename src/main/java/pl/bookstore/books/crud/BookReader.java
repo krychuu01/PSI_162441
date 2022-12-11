@@ -9,17 +9,17 @@ import pl.bookstore.books.BookRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.bookstore.basic.EntityUtils.getDtoList;
+
 @Component
 @RequiredArgsConstructor
 public class BookReader {
 
     private final BookRepository repository;
 
-    public List<EntityDto<Book>> getAllBooks(int page) {
+    public List<? extends EntityDto<Book>> getAllBooks(int page) {
         var books = repository.findAll();
-        return books.stream()
-                .map(Book::toDto)
-                .collect(Collectors.toList());
+        return getDtoList(books);
     }
 
     public EntityDto<Book> getBookDtoById(Long id) {
