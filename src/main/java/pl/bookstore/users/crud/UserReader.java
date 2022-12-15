@@ -1,7 +1,10 @@
 package pl.bookstore.users.crud;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
+import pl.bookstore.basic.EntityUtils;
+import pl.bookstore.basic.ReaderClassesUtils;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.User;
 import pl.bookstore.users.UserRepository;
@@ -16,16 +19,17 @@ public class UserReader {
 
     private final UserRepository repository;
 
+    public List<? extends EntityDto<User>> getAllUsers(Integer pageNumber, Integer pageSize) {
+        var number = ReaderClassesUtils.validatePageNumber(pageNumber);
+        var size = ReaderClassesUtils.validatePageSize(pageSize);
+        var users = repository.findAll(PageRequest.of(number, size)).getContent();
+
+        return ReaderClassesUtils.getDtoList(users);
+    }
+
     public UserDto getUserAsDtoById(Long id) {
         var user = findUser(id);
         return user.toDto();
-    }
-
-    public List<EntityDto<User>> getAllUsers(int page) {
-        var users = repository.findAll();
-        return users.stream()
-                .map(User::toDto)
-                .collect(Collectors.toList());
     }
 
     public User findUser(Long id) {

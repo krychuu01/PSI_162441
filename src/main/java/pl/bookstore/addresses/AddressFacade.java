@@ -30,8 +30,8 @@ public class AddressFacade implements CrudInterface<Address> {
     }
 
     @Override
-    public List<EntityDto<Address>> readAll(Integer page) {
-        return reader.getAllAddresses(page);
+    public List<? extends EntityDto<Address>> readAll(Integer pageNumber, Integer pageSize) {
+        return reader.getAllAddresses(pageNumber, pageSize);
     }
 
     @Override

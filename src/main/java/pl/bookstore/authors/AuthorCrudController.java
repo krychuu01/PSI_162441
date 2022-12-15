@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/authors")
+@RequestMapping("/api/authors")
 public class AuthorCrudController {
 
     private final AuthorFacade facade;
@@ -23,8 +23,9 @@ public class AuthorCrudController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<EntityDto<Author>> getAllAuthors(@RequestParam(required = false) Integer page) {
-        return facade.readAll(page);
+    public List<? extends EntityDto<Author>> getAllAuthors(@RequestParam(required = false) Integer pageNumber,
+                                                           @RequestParam(required = false) Integer pageSize) {
+        return facade.readAll(pageNumber, pageSize);
     }
 
 }

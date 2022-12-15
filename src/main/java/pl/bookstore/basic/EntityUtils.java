@@ -18,10 +18,4 @@ public final class EntityUtils {
         throw new IllegalStateException(String.format("Field name %s not found", fieldName));
     }
 
-    public static <DTO extends EntityDto<E>, E extends EntityMapper<DTO>> List<DTO> getDtoList(List<E> entityList) {
-        return entityList.stream()
-                .map(EntityMapper::toDto)
-                .collect(Collectors.toList());
-    }
-
 }

@@ -1,15 +1,14 @@
 package pl.bookstore.books.crud;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
+import pl.bookstore.basic.ReaderClassesUtils;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static pl.bookstore.basic.EntityUtils.getDtoList;
 
 @Component
 @RequiredArgsConstructor
@@ -17,9 +16,12 @@ public class BookReader {
 
     private final BookRepository repository;
 
-    public List<? extends EntityDto<Book>> getAllBooks(int page) {
-        var books = repository.findAll();
-        return getDtoList(books);
+    public List<? extends EntityDto<Book>> getAllBooks(Integer pageNumber, Integer pageSize) {
+        var number = ReaderClassesUtils.validatePageNumber(pageNumber);
+        var size = ReaderClassesUtils.validatePageSize(pageSize);
+        var books = repository.findAll(PageRequest.of(number, size)).getContent();
+
+        return ReaderClassesUtils.getDtoList(books);
     }
 
     public EntityDto<Book> getBookDtoById(Long id) {
