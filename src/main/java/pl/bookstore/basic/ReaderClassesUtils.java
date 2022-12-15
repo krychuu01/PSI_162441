@@ -14,11 +14,14 @@ public class ReaderClassesUtils {
     }
 
     public static Integer validatePageNumber(Integer pageNumber) {
-        return (pageNumber == null || pageNumber < 0) ? 0 : pageNumber;
+        return pageNumber == null ? 0 : pageNumber;
     }
 
     public static Integer validatePageSize(Integer pageSize) {
-        return (pageSize == null || pageSize < 0) ? 5 : pageSize;
+        if (pageSize == null) {
+            return 5;
+        }
+        return pageSize < 5  ? 5 : pageSize;
     }
 
 }

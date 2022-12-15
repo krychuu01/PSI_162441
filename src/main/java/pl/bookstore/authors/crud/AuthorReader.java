@@ -18,7 +18,7 @@ public class AuthorReader {
 
     public List<? extends EntityDto<Author>> getAllAuthors(Integer pageNumber, Integer pageSize) {
         var number = ReaderClassesUtils.validatePageNumber(pageNumber);
-        var size = ReaderClassesUtils.validatePageNumber(pageSize);
+        var size = ReaderClassesUtils.validatePageSize(pageSize);
         var authors = authorRepository.findAll(PageRequest.of(number, size)).getContent();
 
         return ReaderClassesUtils.getDtoList(authors);
