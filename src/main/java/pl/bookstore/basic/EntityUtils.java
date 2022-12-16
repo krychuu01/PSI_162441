@@ -1,11 +1,6 @@
 package pl.bookstore.basic;
 
-import pl.bookstore.basic.interfaces.EntityDto;
-import pl.bookstore.basic.interfaces.EntityMapper;
-
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public final class EntityUtils {
 

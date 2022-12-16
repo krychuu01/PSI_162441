@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.bookstore.addresses.crud.AddressReader;
 import pl.bookstore.addresses.crud.AddressUpdater;
+import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.dto.UpdateDto;
 import pl.bookstore.basic.interfaces.CrudInterface;
@@ -30,8 +31,8 @@ public class AddressFacade implements CrudInterface<Address> {
     }
 
     @Override
-    public List<? extends EntityDto<Address>> readAll(Integer pageNumber, Integer pageSize) {
-        return reader.getAllAddresses(pageNumber, pageSize);
+    public List<? extends EntityDto<Address>> readAll(Integer pageNumber, Integer pageSize, String fieldName, SortDirection sortDirection) {
+        return reader.getAllAddresses(pageNumber, pageSize, fieldName, sortDirection);
     }
 
     @Override

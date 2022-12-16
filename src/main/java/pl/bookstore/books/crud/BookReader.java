@@ -1,9 +1,9 @@
 package pl.bookstore.books.crud;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import pl.bookstore.basic.ReaderClassesUtils;
+import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
@@ -16,11 +16,8 @@ public class BookReader {
 
     private final BookRepository repository;
 
-    public List<? extends EntityDto<Book>> getAllBooks(Integer pageNumber, Integer pageSize) {
-        var number = ReaderClassesUtils.validatePageNumber(pageNumber);
-        var size = ReaderClassesUtils.validatePageSize(pageSize);
-        var books = repository.findAll(PageRequest.of(number, size)).getContent();
-
+    public List<? extends EntityDto<Book>> getAllBooks(Integer pageNumber, Integer pageSize, String fieldName, SortDirection sortDirection) {
+        var books = ReaderClassesUtils.getEntitiesSortedByField(repository, pageNumber, pageSize, fieldName, sortDirection);
         return ReaderClassesUtils.getDtoList(books);
     }
 

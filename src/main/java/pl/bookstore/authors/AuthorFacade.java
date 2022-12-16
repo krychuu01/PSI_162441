@@ -6,6 +6,7 @@ import pl.bookstore.authors.crud.AuthorCreator;
 import pl.bookstore.authors.crud.AuthorDeleter;
 import pl.bookstore.authors.crud.AuthorReader;
 import pl.bookstore.authors.crud.AuthorUpdater;
+import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.dto.UpdateDto;
 import pl.bookstore.basic.interfaces.CrudInterface;
@@ -33,8 +34,8 @@ public class AuthorFacade implements CrudInterface<Author> {
     }
 
     @Override
-    public List<? extends EntityDto<Author>> readAll(Integer pageNumber, Integer pageSize) {
-        return reader.getAllAuthors(pageNumber, pageSize);
+    public List<? extends EntityDto<Author>> readAll(Integer pageNumber, Integer pageSize, String fieldName, SortDirection sortDirection) {
+        return reader.getAllAuthors(pageNumber, pageSize, fieldName, sortDirection);
     }
 
     @Override

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 import pl.bookstore.addresses.Address;
 import pl.bookstore.addresses.AddressRepository;
 import pl.bookstore.basic.ReaderClassesUtils;
+import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.interfaces.EntityDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -18,10 +18,8 @@ public class AddressReader {
 
     private final AddressRepository repository;
 
-    public List<? extends EntityDto<Address>> getAllAddresses(Integer pageNumber, Integer pageSize) {
-        var number = ReaderClassesUtils.validatePageNumber(pageNumber);
-        var size = ReaderClassesUtils.validatePageSize(pageSize);
-        var addresses = repository.findAll(PageRequest.of(number, size)).getContent();
+    public List<? extends EntityDto<Address>> getAllAddresses(Integer pageNumber, Integer pageSize, String fieldName, SortDirection sortDirection) {
+        var addresses = ReaderClassesUtils.getEntitiesSortedByField(repository, pageNumber, pageSize, fieldName, sortDirection);
         return ReaderClassesUtils.getDtoList(addresses);
     }
 

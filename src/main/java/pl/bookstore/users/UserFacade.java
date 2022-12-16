@@ -2,6 +2,7 @@ package pl.bookstore.users;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.dto.UpdateDto;
 import pl.bookstore.basic.interfaces.CrudInterface;
@@ -33,8 +34,8 @@ public class UserFacade implements CrudInterface<User> {
     }
 
     @Override
-    public List<? extends EntityDto<User>> readAll(Integer pageNumber, Integer pageSize) {
-        return reader.getAllUsers(pageNumber, pageSize);
+    public List<? extends EntityDto<User>> readAll(Integer pageNumber, Integer pageSize, String fieldName, SortDirection sortDirection) {
+        return reader.getAllUsers(pageNumber, pageSize, fieldName, sortDirection);
     }
 
     @Override

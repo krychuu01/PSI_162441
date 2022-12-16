@@ -3,6 +3,7 @@ package pl.bookstore.authors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.interfaces.EntityDto;
 
@@ -24,8 +25,10 @@ public class AuthorCrudController {
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<? extends EntityDto<Author>> getAllAuthors(@RequestParam(required = false) Integer pageNumber,
-                                                           @RequestParam(required = false) Integer pageSize) {
-        return facade.readAll(pageNumber, pageSize);
+                                                           @RequestParam(required = false) Integer pageSize,
+                                                           @RequestParam(required = false) String fieldName,
+                                                           @RequestParam SortDirection sortDirection) {
+        return facade.readAll(pageNumber, pageSize, fieldName, sortDirection);
     }
 
 }
