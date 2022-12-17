@@ -5,8 +5,7 @@ import java.util.Objects;
 public enum SortDirection {
 
     ASC("asc"),
-    DESC("desc"),
-    NONE("none"); // this should be used when no sorting is needed
+    DESC("desc");
 
     private final String sortType;
 
@@ -24,10 +23,6 @@ public enum SortDirection {
 
     public boolean isDescending() {
         return Objects.equals(this.sortType, DESC.getSortType());
-    }
-
-    public boolean isNone() {
-        return Objects.equals(this.sortType, NONE.getSortType());
     }
 
 }

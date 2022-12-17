@@ -16,22 +16,10 @@ public class ReaderClassesUtils {
         int number = validatePageNumber(pageNumber);
         int size = validatePageSize(pageSize);
 
-        if (sortDirection.isAscending()) {
-            return repository
-                    .findAll(PageRequest
-                            .of(number, size, Sort.by(Sort.Direction.ASC, fieldName)))
-                    .getContent();
-        }
+        var direction = sortDirection.isAscending() ? Sort.Direction.ASC : Sort.Direction.DESC;
+        var pageable = PageRequest.of(number, size, Sort.by(direction, fieldName));
 
-        if (sortDirection.isDescending()) {
-            return repository
-                    .findAll(PageRequest
-                            .of(number, size, Sort.by(Sort.Direction.DESC, fieldName)))
-                    .getContent();
-        }
-
-        // if sort direction is not specified, result will not be sorted
-        return repository.findAll(PageRequest.of(number, size)).getContent();
+        return repository.findAll(pageable).getContent();
     }
 
     public static <DTO extends EntityDto<E>, E extends EntityMapper<DTO>> List<DTO> getDtoList(List<E> entityList) {
