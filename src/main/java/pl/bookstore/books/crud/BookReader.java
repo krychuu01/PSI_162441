@@ -7,7 +7,9 @@ import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
+import pl.bookstore.orders.dtos.OrderedBooksDto;
 
+import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -19,6 +21,14 @@ public class BookReader {
     public List<? extends EntityDto<Book>> getAllBooks(Integer pageNumber, Integer pageSize, String fieldName, SortDirection sortDirection) {
         var books = ReaderClassesUtils.getEntitiesSortedByField(repository, pageNumber, pageSize, fieldName, sortDirection);
         return ReaderClassesUtils.getDtoList(books);
+    }
+
+    public List<Book> findBooksByIds(Collection<Long> longs) {
+        return repository.findByIdIn(longs);
+    }
+
+    public Book getReferenceById(Long id) {
+        return repository.getReferenceById(id);
     }
 
     public EntityDto<Book> getBookDtoById(Long id) {

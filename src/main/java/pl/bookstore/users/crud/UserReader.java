@@ -23,6 +23,10 @@ public class UserReader {
         return ReaderClassesUtils.getDtoList(users);
     }
 
+    public User getReferenceById(Long id) {
+        return repository.getReferenceById(id);
+    }
+
     public UserDto getUserAsDtoById(Long id) {
         var user = findUser(id);
         return user.toDto();

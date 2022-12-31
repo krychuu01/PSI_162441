@@ -7,7 +7,6 @@ import pl.bookstore.basic.dto.UpdateDto;
 import java.util.List;
 
 public interface CrudInterface<T>{
-
     MessageListDto create(EntityDto<T> entityDto);
 
     EntityDto<T> readOne(Long id);

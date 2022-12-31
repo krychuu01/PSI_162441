@@ -4,7 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.bookstore.basic.dto.MessageListDto;
+import pl.bookstore.basic.interfaces.EntityDto;
+import pl.bookstore.orders.dtos.OrderDto;
 import pl.bookstore.orders.dtos.OrderedBooksDto;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -13,10 +17,15 @@ public class OrderController {
 
     private final OrderFacade facade;
 
-    @PostMapping("/{id}")
+    @GetMapping("/{userId}")
+    public List<? extends EntityDto<Order>> getOrdersByUserId(@PathVariable Long userId) {
+        return facade.getUserOrders(userId);
+    }
+
+    @PostMapping("/{userId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageListDto createOrder(@PathVariable Long id, @RequestBody OrderedBooksDto dto) {
-        return facade.placeAnOrder(id, dto);
+    public MessageListDto createOrder(@PathVariable Long userId, @RequestBody OrderedBooksDto dto) {
+        return facade.placeAnOrder(userId, dto);
     }
 
 }

@@ -1,6 +1,7 @@
 package pl.bookstore.orders_info;
 
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import pl.bookstore.books.Book;
 import pl.bookstore.orders.Order;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "orders_info")
+@NoArgsConstructor
 public class OrderInfo {
 
     @Id
@@ -35,7 +37,15 @@ public class OrderInfo {
     }
 
     public Double getPrice() {
-        return price;
+        return this.price;
+    }
+
+    public Book getBook() {
+        return this.book;
+    }
+
+    public Integer getBooksAmount() {
+        return this.booksAmount;
     }
 
 }

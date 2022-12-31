@@ -31,6 +31,7 @@ public class UserCreator {
             if (existByEmailOrLogin(user)) {
                 throw new AlreadyExistException("User with this email or login already exists!");
             }
+
             var address = createNewAddress();
             user.setAddress(address);
             userRepository.save(user);
@@ -43,8 +44,7 @@ public class UserCreator {
 
     private Address createNewAddress() {
         var address = new Address();
-        addressRepository.save(address);
-        return address;
+        return addressRepository.save(address);
     }
 
     private boolean existByEmailOrLogin(User user) {

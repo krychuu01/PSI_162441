@@ -5,11 +5,13 @@ import pl.bookstore.basic.interfaces.EntityMapper;
 import pl.bookstore.orders.dtos.OrderDto;
 import pl.bookstore.orders.value_objects.Status;
 import pl.bookstore.orders.value_objects.TotalPrice;
+import pl.bookstore.orders_info.OrderInfo;
 import pl.bookstore.users.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -32,6 +34,9 @@ public class Order implements EntityMapper<OrderDto> {
     @JoinColumn(name = "users_id")
     private User user;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderInfo> orderInfos;
+
     public Order() {
         this.status = Status.PENDING;
         this.orderDate = LocalDateTime.now();
@@ -42,9 +47,11 @@ public class Order implements EntityMapper<OrderDto> {
     public OrderDto toDto() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         return OrderDto.builder()
+                .id(this.getId())
                 .status(this.getStatus())
                 .totalPrice(this.getTotalPrice())
                 .orderDate(dtf.format(this.getOrderDate()))
+                .orderInfos(this.getOrderInfos())
                 .build();
     }
 
@@ -61,7 +68,7 @@ public class Order implements EntityMapper<OrderDto> {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public LocalDateTime getOrderDate() {
@@ -72,8 +79,16 @@ public class Order implements EntityMapper<OrderDto> {
         return this.totalPrice.totalPrice;
     }
 
+    public List<OrderInfo> getOrderInfos() {
+        return this.orderInfos;
+    }
+
     public void addValueToTotalPrice(Double price) {
         this.totalPrice.add(price);
+    }
+
+    public void calculateFinalPrice(Integer discount) {
+        this.totalPrice = this.totalPrice.getTotalPriceWithDiscount(discount);
     }
 
 }
