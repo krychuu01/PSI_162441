@@ -34,7 +34,7 @@ public class Order implements EntityMapper<OrderDto> {
     @JoinColumn(name = "users_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderInfo> orderInfos;
 
     public Order() {
@@ -51,7 +51,7 @@ public class Order implements EntityMapper<OrderDto> {
                 .status(this.getStatus())
                 .totalPrice(this.getTotalPrice())
                 .orderDate(dtf.format(this.getOrderDate()))
-                .orderInfos(this.getOrderInfos())
+                .orderInfos(this.getOrderInfos().stream().map(OrderInfo::toDto).toList())
                 .build();
     }
 

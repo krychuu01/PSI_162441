@@ -3,6 +3,7 @@ package pl.bookstore.orders_info;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import pl.bookstore.books.Book;
+import pl.bookstore.books.dtos.BookDto;
 import pl.bookstore.orders.Order;
 
 import javax.persistence.*;
@@ -34,6 +35,17 @@ public class OrderInfo {
         this.book = book;
         this.booksAmount = booksAmount;
         this.price = price;
+    }
+
+    public OrderInfoDto toDto() {
+        return OrderInfoDto.builder()
+                .bookTitle(this.book.getTitle())
+                .coverType(this.book.getBinding().getCoverType())
+                .yearOfPublication(this.book.getYearOfPublication())
+                .singleBookPrice(this.book.getPrice())
+                .booksAmount(this.getBooksAmount())
+                .price(this.getPrice())
+                .build();
     }
 
     public Double getPrice() {
