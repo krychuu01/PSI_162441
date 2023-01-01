@@ -28,9 +28,9 @@ public class BookCrudController {
     @ResponseStatus(HttpStatus.OK)
     public List<? extends EntityDto<Book>> getBooks(@RequestParam(required = false) Integer pageNumber,
                                                     @RequestParam(required = false) Integer pageSize,
-                                                    @RequestParam(required = false) String fieldName,
+                                                    @RequestParam BookFields fieldName,
                                                     @RequestParam SortDirection sortDirection) {
-        return facade.readAll(pageNumber, pageSize, fieldName, sortDirection);
+        return facade.readAll(pageNumber, pageSize, fieldName.getFieldName(), sortDirection);
     }
 
     @GetMapping("/{id}")
