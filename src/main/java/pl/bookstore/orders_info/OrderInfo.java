@@ -3,7 +3,6 @@ package pl.bookstore.orders_info;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import pl.bookstore.books.Book;
-import pl.bookstore.books.dtos.BookDto;
 import pl.bookstore.orders.Order;
 
 import javax.persistence.*;

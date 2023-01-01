@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.interfaces.EntityDto;
-import pl.bookstore.orders.dtos.OrderDto;
 import pl.bookstore.orders.dtos.OrderedBooksDto;
 
 import java.util.List;

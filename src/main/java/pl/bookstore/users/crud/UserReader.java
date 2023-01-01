@@ -1,7 +1,6 @@
 package pl.bookstore.users.crud;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import pl.bookstore.basic.ReaderClassesUtils;
 import pl.bookstore.basic.SortDirection;

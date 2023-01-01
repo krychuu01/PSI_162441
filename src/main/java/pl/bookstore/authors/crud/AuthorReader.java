@@ -1,7 +1,6 @@
 package pl.bookstore.authors.crud;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import pl.bookstore.authors.Author;
 import pl.bookstore.authors.AuthorRepository;

@@ -2,7 +2,6 @@ package pl.bookstore.addresses.crud;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import pl.bookstore.addresses.Address;
 import pl.bookstore.addresses.AddressRepository;

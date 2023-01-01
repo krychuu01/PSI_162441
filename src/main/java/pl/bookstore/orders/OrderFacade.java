@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.interfaces.EntityDto;
-import pl.bookstore.orders.dtos.OrderDto;
 import pl.bookstore.orders.dtos.OrderedBooksDto;
 
 import java.util.List;

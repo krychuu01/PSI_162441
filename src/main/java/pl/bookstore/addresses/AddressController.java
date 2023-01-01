@@ -3,7 +3,6 @@ package pl.bookstore.addresses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.bookstore.addresses.dtos.AddressDto;
 import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.dto.UpdateDto;

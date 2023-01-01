@@ -7,7 +7,6 @@ import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
-import pl.bookstore.orders.dtos.OrderedBooksDto;
 
 import java.util.Collection;
 import java.util.List;

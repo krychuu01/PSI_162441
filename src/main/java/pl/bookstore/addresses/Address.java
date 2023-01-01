@@ -8,7 +8,6 @@ import pl.bookstore.addresses.value_objects.Country;
 import pl.bookstore.addresses.value_objects.Street;
 import pl.bookstore.addresses.value_objects.ZipCode;
 import pl.bookstore.basic.interfaces.EntityMapper;
-import pl.bookstore.books.value_objects.*;
 import pl.bookstore.users.User;
 
 import javax.persistence.*;
