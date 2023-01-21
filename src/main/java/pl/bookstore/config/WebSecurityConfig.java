@@ -54,6 +54,7 @@ public class WebSecurityConfig {
                  .antMatchers(HttpMethod.POST, "/api/books/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.POST, "/api/authors/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.PATCH, "/api/books/**").hasRole(ADMIN)
+                 .antMatchers(HttpMethod.PATCH, "/api/authors/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.DELETE, "/api/books/**").hasRole(ADMIN)
                  .antMatchers("/swagger-ui.html", "/webjars/**",
                          "swagger-resources/**", "/v2/api-docs/**", "/swagger-ui",

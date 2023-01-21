@@ -4,11 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.bookstore.authors.Author;
 import pl.bookstore.authors.AuthorRepository;
-import pl.bookstore.basic.EntityUtils;
 import pl.bookstore.basic.dto.MessageListDto;
 import pl.bookstore.basic.exceptions.StringValidationException;
-import pl.bookstore.basic.validators.StringValidator;
-import pl.bookstore.users.value_objects.Name;
 
 import static pl.bookstore.users.value_objects.Name.*;
 
@@ -27,7 +24,7 @@ public class AuthorUpdater {
             changeFieldValue(author, fieldName, value);
             messageList.buildMessage(String.format("changed %s value", fieldName));
         }
-        catch(StringValidationException | IllegalArgumentException exception) {
+        catch(StringValidationException | IllegalArgumentException | IllegalStateException exception) {
             messageList.addError(exception.getMessage());
         }
         return messageList;
@@ -38,12 +35,14 @@ public class AuthorUpdater {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains alphanumeric signs.",
                     "First name", MIN_LENGTH, MAX_LENGTH));
         }
-        var field = EntityUtils.getFieldName(fieldName, Author.class);
-        if (field.startsWith("first")) {
+        if (fieldName.startsWith("first")) {
             author.setFirstName(value);
         }
-        else {
+        else if (fieldName.startsWith("last")) {
             author.setLastName(value);
+        }
+        else {
+            throw new IllegalStateException(String.format("Field name %s not found", fieldName));
         }
         repository.save(author);
     }
