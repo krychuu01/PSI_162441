@@ -7,7 +7,7 @@ import pl.bookstore.users.value_objects.*;
 
 import java.time.LocalDate;
 
-public record UserDto(Long id, String login, String email,
+public record UserDto(String login, String email,
                       String password, String firstName, String lastName,
                       String phoneNumber, LocalDate dateOfBirth) implements EntityDto<User> {
 

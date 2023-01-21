@@ -36,7 +36,6 @@ public class Author implements Serializable, EntityMapper<AuthorDto> {
     @Override
     public AuthorDto toDto() {
         return AuthorDto.builder()
-                .id(this.id)
                 .firstName(this.name.firstName)
                 .lastName(this.name.lastName)
                 .build();
@@ -50,12 +49,8 @@ public class Author implements Serializable, EntityMapper<AuthorDto> {
         return this.name.lastName;
     }
 
-    public void setFirstName(String newName) {
-        this.name.firstName = newName;
-    }
-
-    public void setLastName(String newName) {
-        this.name.lastName = newName;
+    public void setName(Name newName) {
+        this.name = newName;
     }
 
 }

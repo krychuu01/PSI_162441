@@ -4,7 +4,7 @@ import lombok.Builder;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.users.value_objects.Name;
 
-public record AuthorDto(Long id, String firstName, String lastName) implements EntityDto<Author> {
+public record AuthorDto(String firstName, String lastName) implements EntityDto<Author> {
 
     @Builder
     public AuthorDto {}

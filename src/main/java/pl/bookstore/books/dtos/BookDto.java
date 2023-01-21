@@ -5,7 +5,7 @@ import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.value_objects.*;
 
-public record BookDto(Long id, String isbn, String title, String numberOfPages, String yearOfPublication,
+public record BookDto(String isbn, String title, String numberOfPages, String yearOfPublication,
                       String publisher, Double price, String coverType) implements EntityDto<Book> {
 
     @Builder

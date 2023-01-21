@@ -48,7 +48,6 @@ public class Book implements Serializable, EntityMapper<BookDto> {
     @Override
     public BookDto toDto() {
         return BookDto.builder()
-                .id(this.getId())
                 .isbn(this.getIsbn())
                 .title(this.getTitle())
                 .numberOfPages(this.getNumberOfPages())
@@ -98,6 +97,7 @@ public class Book implements Serializable, EntityMapper<BookDto> {
             case "yearOfPublication" -> this.yearOfPublication = new YearOfPublication(value);
             case "publisher" -> this.publisher = new Publisher(value);
             case "binding" -> this.binding = Binding.getBindingType(value);
+            case "price" -> this.price = new Price(Double.valueOf(value));
             default -> throw new IllegalStateException("Field not found or can't be changed.");
         }
     }
