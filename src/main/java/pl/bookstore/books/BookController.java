@@ -33,6 +33,11 @@ public class BookController {
         return facade.readAll(pageNumber, pageSize, fieldName.getFieldName(), sortDirection);
     }
 
+    @GetMapping("/most-expensive")
+    public BookDto getMostExpensiveBook() {
+        return facade.getMostExpensiveBook();
+    }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityDto<Book> getBook(@PathVariable Long id) {

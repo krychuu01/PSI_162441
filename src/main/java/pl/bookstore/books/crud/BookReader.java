@@ -7,6 +7,7 @@ import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.interfaces.EntityDto;
 import pl.bookstore.books.Book;
 import pl.bookstore.books.BookRepository;
+import pl.bookstore.books.dtos.BookDto;
 
 import java.util.Collection;
 import java.util.List;
@@ -38,6 +39,11 @@ public class BookReader {
     protected Book findBook(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Book not found"));
+    }
+
+    public BookDto getMostExpensiveBook() {
+        var book = repository.findTopByOrderByPriceDesc();
+        return book.toDto();
     }
 
 }

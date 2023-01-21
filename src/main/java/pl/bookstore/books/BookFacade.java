@@ -11,6 +11,7 @@ import pl.bookstore.books.crud.BookCreator;
 import pl.bookstore.books.crud.BookDeleter;
 import pl.bookstore.books.crud.BookReader;
 import pl.bookstore.books.crud.BookUpdater;
+import pl.bookstore.books.dtos.BookDto;
 
 import java.util.List;
 
@@ -47,6 +48,10 @@ public class BookFacade implements CrudInterface<Book> {
     @Override
     public MessageListDto delete(Long entityId) {
         return deleter.deleteById(entityId);
+    }
+
+    public BookDto getMostExpensiveBook() {
+        return reader.getMostExpensiveBook();
     }
 
 }
