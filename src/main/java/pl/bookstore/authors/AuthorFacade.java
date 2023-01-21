@@ -49,7 +49,7 @@ public class AuthorFacade implements CrudInterface<Author> {
 
     @Override
     public MessageListDto delete(Long entityId) {
-        return null;
+        return deleter.deleteAuthor(entityId);
     }
 
 }

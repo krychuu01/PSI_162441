@@ -44,5 +44,10 @@ public class AuthorController {
         return facade.updateAuthorName(id, dto);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public MessageListDto deleteAuthorById(@PathVariable Long id) {
+        return facade.delete(id);
+    }
 
 }
