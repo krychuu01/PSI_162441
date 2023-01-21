@@ -20,7 +20,7 @@ public class Email extends StringValidator implements Serializable {
         setValidatorData(email);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
-                    "Email", MIN_LENGTH, MAX_LENGTH, REGEX));
+                    "Email", MIN_LENGTH, MAX_LENGTH, "letters, digits, one '@' sign and dots!"));
         }
         this.email = email;
     }

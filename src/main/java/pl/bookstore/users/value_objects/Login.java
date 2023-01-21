@@ -20,7 +20,7 @@ public class Login extends StringValidator implements Serializable {
         setValidatorData(login);
         if (!isValid()) {
             throw new StringValidationException(String.format("%s must be between %d-%d characters length, and contains only %s",
-                    "Login", MIN_LENGTH, MAX_LENGTH, REGEX));
+                    "Login", MIN_LENGTH, MAX_LENGTH, "alphanumeric signs and punctation signs!"));
         }
         this.login = login;
     }
