@@ -27,9 +27,9 @@ public class AddressReader {
         return address.toDto();
     }
 
-    protected Address findAddress(Long id) {
+    public Address findAddress(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Book not found"));
+                .orElseThrow(() -> new IllegalStateException("Address not found"));
     }
 
 }
