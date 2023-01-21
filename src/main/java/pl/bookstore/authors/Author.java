@@ -2,6 +2,10 @@ package pl.bookstore.authors;
 
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import pl.bookstore.addresses.value_objects.City;
+import pl.bookstore.addresses.value_objects.Country;
+import pl.bookstore.addresses.value_objects.Street;
+import pl.bookstore.addresses.value_objects.ZipCode;
 import pl.bookstore.basic.interfaces.EntityMapper;
 import pl.bookstore.users.value_objects.Name;
 
@@ -43,6 +47,14 @@ public class Author implements Serializable, EntityMapper<AuthorDto> {
 
     public String getLastName() {
         return this.name.lastName;
+    }
+
+    public void setFirstName(String newName) {
+        this.name.firstName = newName;
+    }
+
+    public void setLastName(String newName) {
+        this.name.lastName = newName;
     }
 
 }

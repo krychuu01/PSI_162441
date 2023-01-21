@@ -29,9 +29,7 @@ public class Address implements Serializable, EntityMapper<AddressDto> {
     private City city;
     @Embedded
     private Country country;
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JoinColumn(name = "users_id")
-    private User user;
+
 
     @Builder
     public Address(ZipCode zipCode, Street street, City city, Country country){
