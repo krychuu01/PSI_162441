@@ -40,7 +40,7 @@ public class AuthorFacade implements CrudInterface<Author> {
 
     @Override
     public MessageListDto updateField(Long entityId, UpdateDto dto) {
-        return null;
+        return updater.updateField(entityId, dto.fieldName(), dto.value());
     }
 
     @Override

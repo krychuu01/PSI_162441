@@ -21,4 +21,9 @@ public class AuthorReader {
         return ReaderClassesUtils.getDtoList(authors);
     }
 
+    public Author findAuthor(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Author not found"));
+    }
+
 }

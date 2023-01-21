@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.bookstore.basic.SortDirection;
 import pl.bookstore.basic.dto.MessageListDto;
+import pl.bookstore.basic.dto.UpdateDto;
 import pl.bookstore.basic.interfaces.EntityDto;
 
 import java.util.List;
@@ -30,5 +31,12 @@ public class AuthorController {
                                                            @RequestParam SortDirection sortDirection) {
         return facade.readAll(pageNumber, pageSize, fieldName.getFieldName(), sortDirection);
     }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageListDto updateAuthorField(@PathVariable Long id, @RequestBody UpdateDto dto) {
+        return facade.updateField(id, dto);
+    }
+
 
 }
