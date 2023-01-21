@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/authors")
-public class AuthorCrudController {
+public class AuthorController {
 
     private final AuthorFacade facade;
 

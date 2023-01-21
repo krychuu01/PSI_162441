@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/books")
 @RestController
-public class BookCrudController {
+public class BookController {
 
     private final BookFacade facade;
 
