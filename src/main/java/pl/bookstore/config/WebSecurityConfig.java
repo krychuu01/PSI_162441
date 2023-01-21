@@ -50,11 +50,13 @@ public class WebSecurityConfig {
 
          http.authorizeRequests()
                  .antMatchers(HttpMethod.GET,"/api/users/**").hasRole(ADMIN)
+                 .antMatchers(HttpMethod.GET, "/api/addresses/{id}").hasAnyRole(ADMIN, USER)
                  .antMatchers(HttpMethod.GET, "/api/addresses/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.POST, "/api/books/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.POST, "/api/authors/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.PATCH, "/api/books/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.PATCH, "/api/authors/**").hasRole(ADMIN)
+                 .antMatchers(HttpMethod.PUT, "/api/authors/**").hasRole(ADMIN)
                  .antMatchers(HttpMethod.DELETE, "/api/books/**").hasRole(ADMIN)
                  .antMatchers("/swagger-ui.html", "/webjars/**",
                          "swagger-resources/**", "/v2/api-docs/**", "/swagger-ui",
