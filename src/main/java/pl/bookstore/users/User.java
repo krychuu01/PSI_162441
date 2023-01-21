@@ -97,10 +97,9 @@ public class User implements Serializable, EntityMapper<UserDto> {
     public LocalDate getDateOfBirth() {
         return this.dateOfBirth.dateOfBirth;
     }
-
-    //
+    
     public Address getAddress() {
-        throw new IllegalStateException("To be implemented!");
+        return this.address;
     }
 
     public void setAddress(Address address) {

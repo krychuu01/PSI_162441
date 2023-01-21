@@ -48,6 +48,7 @@ public class Book implements Serializable, EntityMapper<BookDto> {
     @Override
     public BookDto toDto() {
         return BookDto.builder()
+                .id(this.getId())
                 .isbn(this.getIsbn())
                 .title(this.getTitle())
                 .numberOfPages(this.getNumberOfPages())
