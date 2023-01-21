@@ -32,10 +32,16 @@ public class AuthorController {
         return facade.readAll(pageNumber, pageSize, fieldName.getFieldName(), sortDirection);
     }
 
-    @PatchMapping("/{id}")
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public EntityDto<Author> getAuthorById(@PathVariable Long id) {
+        return facade.readOne(id);
+    }
+
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MessageListDto updateAuthorField(@PathVariable Long id, @RequestBody UpdateDto dto) {
-        return facade.updateField(id, dto);
+    public MessageListDto updateAuthorField(@PathVariable Long id, @RequestBody AuthorDto dto) {
+        return facade.updateAuthorName(id, dto);
     }
 
 

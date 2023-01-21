@@ -26,4 +26,9 @@ public class AuthorReader {
                 .orElseThrow(() -> new IllegalStateException("Author not found"));
     }
 
+    public EntityDto<Author> getAuthor(Long id) {
+        var author = findAuthor(id);
+        return author.toDto();
+    }
+
 }

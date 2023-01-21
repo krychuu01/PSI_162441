@@ -30,7 +30,7 @@ public class AuthorFacade implements CrudInterface<Author> {
 
     @Override
     public EntityDto<Author> readOne(Long id) {
-        return null;
+        return reader.getAuthor(id);
     }
 
     @Override
@@ -40,7 +40,11 @@ public class AuthorFacade implements CrudInterface<Author> {
 
     @Override
     public MessageListDto updateField(Long entityId, UpdateDto dto) {
-        return updater.updateField(entityId, dto.fieldName(), dto.value());
+        return null;
+    }
+
+    public MessageListDto updateAuthorName(Long entityId, AuthorDto dto) {
+        return updater.updateAuthorName(entityId, dto);
     }
 
     @Override
