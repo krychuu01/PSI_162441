@@ -56,6 +56,7 @@ public class User implements Serializable, EntityMapper<UserDto> {
     @Override
     public UserDto toDto() {
         return UserDto.builder()
+                .id(this.id)
                 .login(this.getLogin())
                 .email(this.getEmail())
                 .lastName(this.getLastName())
