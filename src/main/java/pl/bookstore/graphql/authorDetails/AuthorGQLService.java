@@ -42,4 +42,8 @@ public class AuthorGQLService {
         return author;
     }
 
+    public List<AuthorGQL> findAuthorsWithLastNameLike(String lastName) {
+        return authorGQLRepository.findByLastNameLike(lastName);
+    }
+
 }

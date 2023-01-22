@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AddressGQLRepository extends JpaRepository<AddressGQL, Long> {
     List<AddressGQL> findByCountry(String countryName);
+
+    List<AddressGQL> findByCity(String givenCity);
 }

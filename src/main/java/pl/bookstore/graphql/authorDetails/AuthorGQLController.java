@@ -24,7 +24,7 @@ public class AuthorGQLController {
     }
 
     @QueryMapping
-    public List<AuthorGQL> findAllByFirstName(@Argument String firstName) {
+    public List<AuthorGQL> findAuthorsByFirstName(@Argument String firstName) {
         return authorGQLService.findAllByFirstName(firstName);
     }
 

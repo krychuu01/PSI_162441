@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface AuthorGQLRepository extends JpaRepository<AuthorGQL, Long> {
     List<AuthorGQL> findByFirstNameLike(String firstName);
+    List<AuthorGQL> findByLastNameLike(String lastName);
 
 }
