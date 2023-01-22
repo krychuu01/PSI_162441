@@ -1,43 +1,89 @@
  type Query  {
-    findAllAuthors: [AuthorGQL]!
+     findAllAuthors: [Author]!
+     findAuthorById(id: ID): Author
+     findAllByFirstName(firstName: String): [Author]!
+
+     findAllBooks: [Book]!
+     findBookById(id: ID): Book
+     findAllByTitle(title: String): [Book]
+
+     findAllAddresses: [Address]!
+     findAddressById(id: ID): Address
+     findAllByCountry(country: String): [Address]
 }
 
 type Mutation {
-    addAuthor(firstName: String!, lastName: String!): AuthorGQL
+    addBook(book: BookGQL): Book
+    changeBookName(id: ID, title: String): Book
+    deleteBookById(id: ID): ID
+
+    addAuthor(author: AuthorGQL): Author
+    changeAuthorsName(id: ID, firstName: String, lastName: String): Author
+    deleteAuthorById(id: ID): ID
+
+    addAddress(address: AddressGQL): Address
+    changeAddressCountry(id: ID, country: String): Address
+    deleteAddressById(id: ID): ID
 }
 
-type BookGQL {
+type Book {
     id: ID
     title: String
-    isbn: String
     numberOfPages: Int
     yearOfPublication: Int
-    publisher: String
     price: Float
-    authorGQL: AuthorGQL
+    author: ID
 }
 
-type UserGQL {
+input BookGQL {
     id: ID
-    login: String
+    title: String
+    numberOfPages: Int
+    yearOfPublication: Int
+    price: Float
+    author: ID
+}
+
+type User {
+    id: ID
     email: String
     password: String
     firstName: String
     lastName: String
     phoneNumber: String
-    addressGQL: AddressGQL
+    address: ID
 }
 
-type AuthorGQL {
+input UserGQL {
+    id: ID
+    email: String
+    password: String
+    firstName: String
+    lastName: String
+    phoneNumber: String
+    address: ID
+}
+
+type Author {
     id: ID
     firstName: String
     lastName: String
 }
 
-type AddressGQL {
+input AuthorGQL {
     id: ID
-    zipCode: String
-    street: String
+    firstName: String
+    lastName: String
+}
+
+type Address {
+    id: ID
     city: String
     country: String
 }
+
+ input AddressGQL {
+     id: ID
+     city: String
+     country: String
+ }
