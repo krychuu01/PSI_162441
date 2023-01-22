@@ -25,6 +25,21 @@ public class BookGQLController {
     }
 
     @QueryMapping
+    List<BookGQL> findAllBooksByAuthorId(@Argument Long id) {
+        return service.findAllBooksByAuthorId(id);
+    }
+
+    @QueryMapping
+    List<BookGQL> findAllBooksByCountry(@Argument String country) {
+        return service.findBooksFromCountry(country);
+    }
+
+    @QueryMapping
+    List<BookGQL> findAllBooksWrittenBy(@Argument String authorsLastName) {
+        return service.findBooksWrittenBy(authorsLastName);
+    }
+
+    @QueryMapping
     List<BookGQL> findAllByTitle(@Argument String title) {
         return service.findAllByTitle(title);
     }
