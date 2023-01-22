@@ -1,15 +1,24 @@
  type Query  {
      findAllAuthors: [Author]!
      findAuthorById(id: ID): Author
-     findAllByFirstName(firstName: String): [Author]!
+     findAuthorsByFirstName(firstName: String): [Author]!
 
      findAllBooks: [Book]!
      findBookById(id: ID): Book
      findAllByTitle(title: String): [Book]
+     findAllBooksByAuthorId(id: ID): [Book] # 1 query korzystajace z innej encji
+     findAllBooksByCountry(country: String): [Book] # 3 query korzystajace z innych encji
+     findAllBooksWrittenBy(authorsLastName: String): [Book] # 5 query korzystajace z innej encji
 
      findAllAddresses: [Address]!
      findAddressById(id: ID): Address
      findAllByCountry(country: String): [Address]
+
+     findAllUsers: [User]!
+     findUserById(id: ID): User
+     findUsersByFirstName(firstName: String): [User]
+     findUsersByCountry(country: String): [User] # 2 query korzystające z innej encji
+     findUsersByCity(city: String): [User] # 4 query korzystajace z inne encji
 }
 
 type Mutation {
@@ -24,6 +33,10 @@ type Mutation {
     addAddress(address: AddressGQL): Address
     changeAddressCountry(id: ID, country: String): Address
     deleteAddressById(id: ID): ID
+
+    addUser(user: UserGQL): User
+    changeUserEmail(id: ID, email: String): User
+    deleteUserById(id: ID): ID
 }
 
 type Book {
