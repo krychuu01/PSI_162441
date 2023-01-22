@@ -1,7 +1,5 @@
 package pl.bookstore.graphql.bookDetails;
 
-import pl.bookstore.graphql.authorDetails.AuthorGQL;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,28 +12,23 @@ public class BookGQL {
 
     private String title;
 
-    private String isbn;
     private Integer numberOfPages;
     private Integer yearOfPublication;
-    private String publisher;
     private Float price;
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private AuthorGQL authorGQL;
+    @Column(name = "author_id")
+    private Long author;
 
     public BookGQL() {
 
     }
 
-    public BookGQL(String title, String isbn, Integer numberOfPages, Integer yearOfPublication,
-                   String publisher, Float price, AuthorGQL author) {
+    public BookGQL(String title, Integer numberOfPages, Integer yearOfPublication,
+                   Float price, Long author) {
         this.title = title;
-        this.isbn = isbn;
         this.numberOfPages = numberOfPages;
         this.yearOfPublication = yearOfPublication;
-        this.publisher = publisher;
         this.price = price;
-        this.authorGQL = author;
+        this.author = author;
     }
 
     public Long getId() {
@@ -54,14 +47,6 @@ public class BookGQL {
         this.title = title;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public Integer getNumberOfPages() {
         return numberOfPages;
     }
@@ -78,14 +63,6 @@ public class BookGQL {
         this.yearOfPublication = yearOfPublication;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
     public Float getPrice() {
         return price;
     }
@@ -94,12 +71,12 @@ public class BookGQL {
         this.price = price;
     }
 
-    public AuthorGQL getAuthor() {
-        return authorGQL;
+    public Long getAuthor() {
+        return author;
     }
 
-    public void setAuthor(AuthorGQL author) {
-        this.authorGQL = author;
+    public void setAuthor(Long author) {
+        this.author = author;
     }
 
     @Override
@@ -107,12 +84,10 @@ public class BookGQL {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", isbn='" + isbn + '\'' +
                 ", numberOfPages=" + numberOfPages +
                 ", yearOfPublication=" + yearOfPublication +
-                ", publisher='" + publisher + '\'' +
                 ", price=" + price +
-                ", author=" + authorGQL +
+                ", author=" + author +
                 '}';
     }
 }

@@ -12,37 +12,31 @@ public class UserGQL {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String login;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private AddressGQL addressGQL;
+
+    @Column(name = "address_id")
+    private Long address;
 
     public UserGQL() {
 
     }
 
-    public UserGQL(String login, String email, String password, String firstName,
-                   String lastName, String phoneNumber, AddressGQL addressGQL) {
-        this.login = login;
+    public UserGQL(String email, String password, String firstName,
+                   String lastName, String phoneNumber, Long address) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.addressGQL = addressGQL;
+        this.address = address;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public String getEmail() {
@@ -65,12 +59,8 @@ public class UserGQL {
         return phoneNumber;
     }
 
-    public AddressGQL getAddress() {
-        return addressGQL;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public Long getAddress() {
+        return address;
     }
 
     public void setEmail(String email) {
@@ -93,21 +83,20 @@ public class UserGQL {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setAddress(AddressGQL addressGQL) {
-        this.addressGQL = addressGQL;
+    public void setAddress(Long address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", address=" + addressGQL +
+                ", address=" + address +
                 '}';
     }
 }
