@@ -1,0 +1,43 @@
+ type Query  {
+    findAllAuthors: [AuthorGQL]!
+}
+
+type Mutation {
+    addAuthor(firstName: String!, lastName: String!): AuthorGQL
+}
+
+type BookGQL {
+    id: ID
+    title: String
+    isbn: String
+    numberOfPages: Int
+    yearOfPublication: Int
+    publisher: String
+    price: Float
+    authorGQL: AuthorGQL
+}
+
+type UserGQL {
+    id: ID
+    login: String
+    email: String
+    password: String
+    firstName: String
+    lastName: String
+    phoneNumber: String
+    addressGQL: AddressGQL
+}
+
+type AuthorGQL {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+type AddressGQL {
+    id: ID
+    zipCode: String
+    street: String
+    city: String
+    country: String
+}
