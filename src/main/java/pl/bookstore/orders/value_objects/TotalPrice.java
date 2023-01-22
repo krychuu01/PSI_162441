@@ -1,6 +1,7 @@
 package pl.bookstore.orders.value_objects;
 
 import javax.persistence.Embeddable;
+import java.text.DecimalFormat;
 
 @Embeddable
 public class TotalPrice {
@@ -12,7 +13,8 @@ public class TotalPrice {
     }
 
     public TotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
+        DecimalFormat df = new DecimalFormat("#.##");
+        this.totalPrice = Double.valueOf(df.format(totalPrice));
     }
 
     public TotalPrice getTotalPriceWithDiscount(Integer discount) {
